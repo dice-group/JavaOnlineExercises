@@ -31,6 +31,7 @@ RUN apt-get -y update && \
 # Create configuration file
 
 RUN python3 -m pip install notebook && \
+ cd /srv/jupyterhub/ && \
  jupyterhub --generate-config
 
 
@@ -41,17 +42,14 @@ RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=acc
  tar xzf jdk-10.0.2_linux-x64_bin.tar.gz && \
  mkdir /opt/Oracle_Java/ && \
  mv jdk-10.0.2 /opt/Oracle_Java/ && \
- \ 
  update-alternatives --install "/usr/bin/java" "java" "/opt/Oracle_Java/jdk-10.0.2/bin/java" 1 && \
  update-alternatives --install "/usr/bin/javac" "javac" "/opt/Oracle_Java/jdk-10.0.2/bin/javac" 1 && \
  update-alternatives --install "/usr/bin/javaws" "javaws" "/opt/Oracle_Java/jdk-10.0.2/bin/javaws" 1 && \
  update-alternatives --install "/usr/bin/jar" "jar" "/opt/Oracle_Java/jdk-10.0.2/bin/jar" 1  && \
- \
  update-alternatives --set "java" "/opt/Oracle_Java/jdk-10.0.2/bin/java" && \
  update-alternatives --set "javac" "/opt/Oracle_Java/jdk-10.0.2/bin/javac" && \
  update-alternatives --set "javaws" "/opt/Oracle_Java/jdk-10.0.2/bin/javaws" && \
  update-alternatives --set "jar" "/opt/Oracle_Java/jdk-10.0.2/bin/jar" && \
- \
  java -version
 
 
@@ -74,9 +72,7 @@ RUN conda install xeus-cling notebook -c QuantStack -c conda-forge
 # Create an admin and a user
 
 RUN useradd --create-home nbgadmin && \
- usermod --password '$1$jTELqugt$7Q4cw6oC4/8Lj4Y6Nhp.V1' nbgadmin && \
  useradd --create-home nbguser && \
- usermod --password '$1$jTELqugt$7Q4cw6oC4/8Lj4Y6Nhp.V1' nbguser && \
  sed -i 's/^#c.JupyterHub.admin_users.*/c.Authenticator.admin_users = set(["nbgadmin"])/' /srv/jupyterhub/jupyterhub_config.py
 
 
@@ -86,12 +82,10 @@ RUN useradd --create-home nbgadmin && \
 # Disable extensions for non-admins
 
 RUN conda install -c conda-forge nbgrader && \
- \
  mkdir -p /srv/nbgrader/exchange && \
  chmod ugo+rw /srv/nbgrader/exchange && \
  mkdir -p /home/nbgadmin/default-course/ && \
  chown nbgadmin:nbgadmin /home/nbgadmin/default-course/ && \
- \
  jupyter nbextension disable --sys-prefix create_assignment/main && \
  runuser -l  nbgadmin -c '/opt/conda/bin/jupyter nbextension enable --user create_assignment/main' && \
  jupyter nbextension disable --sys-prefix validate_assignment/main && \
@@ -103,7 +97,7 @@ RUN conda install -c conda-forge nbgrader && \
 
 # Configure nbgrader
 
- RUN echo "c = get_config()\n\
+RUN echo "c = get_config()\n\
 c.Exchange.course_id = \"default-course\"\n\
 c.Exchange.root = '/srv/nbgrader/exchange'\n\
 c.ClearSolutions.code_stub = {\n\
