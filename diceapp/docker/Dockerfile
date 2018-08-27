@@ -36,6 +36,15 @@ RUN python3 -m pip install notebook && \
 
 
 
+
+# Create an admin and a user
+
+RUN useradd --create-home nbgadmin && \
+ useradd --create-home nbguser && \
+ sed -i 's/^#c.JupyterHub.admin_users.*/c.Authenticator.admin_users = set(["nbgadmin"])/' /srv/jupyterhub/jupyterhub_config.py
+
+
+
 # Install Java 10
 
 RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/10.0.2+13/19aef61b38124481863b1413dce1855f/jdk-10.0.2_linux-x64_bin.tar.gz && \
@@ -65,15 +74,6 @@ RUN wget --quiet https://github.com/SpencerPark/IJava/releases/download/v1.1.1/i
 # Install GCC and C++ kernel / xeus-cling
 
 RUN conda install xeus-cling notebook -c QuantStack -c conda-forge
-
-
-
-
-# Create an admin and a user
-
-RUN useradd --create-home nbgadmin && \
- useradd --create-home nbguser && \
- sed -i 's/^#c.JupyterHub.admin_users.*/c.Authenticator.admin_users = set(["nbgadmin"])/' /srv/jupyterhub/jupyterhub_config.py
 
 
 
@@ -111,6 +111,17 @@ c.ClearSolutions.code_stub = {\n\
 
 
 
+# Create certificate for HTTPS
+
+RUN mkdir -p /opt/ssl && \
+ cd /opt/ssl && \
+ openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes -subj "/C=DE/ST=NRW/L=Paderborn/O=UPB/OU=DICE/CN=diceapp.cs.upb.de" && \
+ sed -i 's/^#c.JupyterHub.ssl_cert.*/c.JupyterHub.ssl_cert = "\/opt\/ssl\/cert.pem"/' /srv/jupyterhub/jupyterhub_config.py && \
+ sed -i 's/^#c.JupyterHub.ssl_key.*/c.JupyterHub.ssl_key = "\/opt\/ssl\/key.pem"/' /srv/jupyterhub/jupyterhub_config.py
 
 
 
+# Backup of jupyterhub configuration
+# In some cases, this file disappears if directories are mounted
+
+RUN cp /srv/jupyterhub/jupyterhub_config.py /tmp/jupyterhub_config.py
