@@ -28,8 +28,15 @@ RUN apt-get -y update && \
 
 
 # Install Jupyter notebook
+# Create configuration file
 
-RUN python3 -m pip install notebook
+RUN python3 -m pip install notebook && \
+ cd /srv/jupyterhub/ && \
+ jupyterhub --generate-config && \
+ sed -i 's/^#c.JupyterHub.ssl_cert.*/c.JupyterHub.ssl_cert = "\/opt\/ssl\/cert.pem"/' /srv/jupyterhub/jupyterhub_config.py && \
+ sed -i 's/^#c.JupyterHub.ssl_key.*/c.JupyterHub.ssl_key = "\/opt\/ssl\/key.pem"/' /srv/jupyterhub/jupyterhub_config.py && \
+ sed -i 's/^#c.JupyterHub.admin_users.*/c.Authenticator.admin_users = set(["nbgadmin"])/' /srv/jupyterhub/jupyterhub_config.py && \
+ cp /srv/jupyterhub/jupyterhub_config.py /tmp/jupyterhub_config.py
 
 
 
@@ -111,20 +118,3 @@ c.ClearSolutions.code_stub = {\n\
 'C++17': '/* YOUR CODE HERE */'\n\
 }" \
 > /opt/conda/etc/jupyter/nbgrader_config.py
-
-
-
-# Configure Jupyter
-
-RUN cd /srv/jupyterhub/ && \
- jupyterhub --generate-config && \
- sed -i 's/^#c.JupyterHub.ssl_cert.*/c.JupyterHub.ssl_cert = "\/opt\/ssl\/cert.pem"/' /srv/jupyterhub/jupyterhub_config.py && \
- sed -i 's/^#c.JupyterHub.ssl_key.*/c.JupyterHub.ssl_key = "\/opt\/ssl\/key.pem"/' /srv/jupyterhub/jupyterhub_config.py && \
- sed -i 's/^#c.JupyterHub.admin_users.*/c.Authenticator.admin_users = set(["nbgadmin"])/' /srv/jupyterhub/jupyterhub_config.py
-
-
-
-# Backup of jupyterhub configuration
-# In some cases, this file disappears if directories are mounted
-
-RUN cp /srv/jupyterhub/jupyterhub_config.py /tmp/jupyterhub_config.py
