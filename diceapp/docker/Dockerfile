@@ -28,20 +28,8 @@ RUN apt-get -y update && \
 
 
 # Install Jupyter notebook
-# Create configuration file
 
-RUN python3 -m pip install notebook && \
- cd /srv/jupyterhub/ && \
- jupyterhub --generate-config
-
-
-
-
-# Create an admin and a user
-
-RUN useradd --create-home nbgadmin && \
- useradd --create-home nbguser && \
- sed -i 's/^#c.JupyterHub.admin_users.*/c.Authenticator.admin_users = set(["nbgadmin"])/' /srv/jupyterhub/jupyterhub_config.py
+RUN python3 -m pip install notebook
 
 
 
@@ -77,6 +65,13 @@ RUN conda install xeus-cling notebook -c QuantStack -c conda-forge
 
 
 
+# Create an admin and a user
+
+RUN useradd --create-home nbgadmin && \
+ useradd --create-home nbguser
+
+
+
 # Install nbgrader
 # Create directories for pushing/pulling assignments and for the default course
 # Disable extensions for non-admins
@@ -92,6 +87,14 @@ RUN conda install -c conda-forge nbgrader && \
  runuser -l  nbgadmin -c '/opt/conda/bin/jupyter nbextension enable --user validate_assignment/main' && \
  jupyter nbextension disable --sys-prefix formgrader/main --section=tree && \
  runuser -l  nbgadmin -c '/opt/conda/bin/jupyter nbextension enable --user formgrader/main --section=tree'
+
+
+
+# Create certificate for HTTPS
+
+RUN mkdir -p /opt/ssl && \
+ cd /opt/ssl && \
+ openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes -subj "/C=DE/ST=NRW/L=Paderborn/O=UPB/OU=DICE/CN=diceapp.cs.upb.de"
 
 
 
@@ -111,13 +114,13 @@ c.ClearSolutions.code_stub = {\n\
 
 
 
-# Create certificate for HTTPS
+# Configure Jupyter
 
-RUN mkdir -p /opt/ssl && \
- cd /opt/ssl && \
- openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes -subj "/C=DE/ST=NRW/L=Paderborn/O=UPB/OU=DICE/CN=diceapp.cs.upb.de" && \
+RUN cd /srv/jupyterhub/ && \
+ jupyterhub --generate-config && \
  sed -i 's/^#c.JupyterHub.ssl_cert.*/c.JupyterHub.ssl_cert = "\/opt\/ssl\/cert.pem"/' /srv/jupyterhub/jupyterhub_config.py && \
- sed -i 's/^#c.JupyterHub.ssl_key.*/c.JupyterHub.ssl_key = "\/opt\/ssl\/key.pem"/' /srv/jupyterhub/jupyterhub_config.py
+ sed -i 's/^#c.JupyterHub.ssl_key.*/c.JupyterHub.ssl_key = "\/opt\/ssl\/key.pem"/' /srv/jupyterhub/jupyterhub_config.py && \
+ sed -i 's/^#c.JupyterHub.admin_users.*/c.Authenticator.admin_users = set(["nbgadmin"])/' /srv/jupyterhub/jupyterhub_config.py
 
 
 
