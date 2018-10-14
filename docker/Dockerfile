@@ -36,9 +36,12 @@ RUN mkdir -p /opt/ssl && \
 
 
 # Create an admin and a user
+# Set default password nbgpsw
 
 RUN useradd --create-home nbgadmin && \
- useradd --create-home nbguser
+ useradd --create-home nbguser && \
+ usermod --password \$1\$xg4dbNmA\$ygNrKGsFBsu8hXoGieRSK0 nbgadmin && \
+ usermod --password \$1\$xg4dbNmA\$ygNrKGsFBsu8hXoGieRSK0 nbguser
 
 
 
@@ -110,3 +113,9 @@ c.ClearSolutions.code_stub = {\n\
 > /opt/conda/etc/jupyter/nbgrader_config.py && \
  cd /mnt && \
  ln -s /opt/conda/etc/jupyter/nbgrader_config.py
+
+
+
+# Create backup of admin users home
+
+RUN cp -R /home/nbgadmin/ /home/.nbgadmin/

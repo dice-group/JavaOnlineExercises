@@ -1,13 +1,11 @@
 # nbgraderutils
 
 ## Files
-- build.sh  
-  Shell script to build docker image
-- run.sh  
+- `1-build-image.sh` and `Dockerfile`  
+  Shell script and commands to build and assemble docker image
+- `2-run-container.sh`  
   Shell script to build and run a docker container based on the docker image
-- Dockerfile  
-  Commands to assemble docker image, used in build.sh
-  
+
 ## Info
 
 - Code  
