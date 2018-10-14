@@ -1,9 +1,15 @@
 # nbgraderutils
 
-Take a look into the wiki:  
-https://github.com/dice-group/nbgraderutils/wiki
+## Directories
 
-## Files
+- docker  
+  Files to build docker image and container as a one-time execution
 
-- __diceapp__: Dockerfile configuration for using Java and C++ kernel. 
-- __tests__ Notebook documents (ipynb files) to test server behavior.
+## Info
+
+- Code  
+  https://github.com/dice-group/nbgraderutils
+- Documentation  
+  https://github.com/dice-group/nbgraderutils/wiki
+-  Credits  
+  https://dice.cs.uni-paderborn.de/
