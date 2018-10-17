@@ -48,16 +48,16 @@ RUN useradd --create-home nbgadmin && \
 # Install Java 11
 # https://wiki.ubuntuusers.de/Java/Oracle_Java/
 
-RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/11+28/55eed80b163941c8885ad9298e6d786a/jdk-11_linux-x64_bin.tar.gz && \
- tar xzf jdk-11_linux-x64_bin.tar.gz && \
+RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/11.0.1+13/90cf5d8f270a4347a95050320eef3fb7/jdk-11.0.1_linux-x64_bin.tar.gz && \
+ tar xzf jdk-11.0.1_linux-x64_bin.tar.gz && \
  mkdir /opt/Oracle_Java/ && \
- mv jdk-11 /opt/Oracle_Java/ && \
- update-alternatives --install "/usr/bin/java" "java" "/opt/Oracle_Java/jdk-11/bin/java" 1 && \
- update-alternatives --install "/usr/bin/javac" "javac" "/opt/Oracle_Java/jdk-11/bin/javac" 1 && \
- update-alternatives --install "/usr/bin/jar" "jar" "/opt/Oracle_Java/jdk-11/bin/jar" 1  && \
- update-alternatives --set "java" "/opt/Oracle_Java/jdk-11/bin/java" && \
- update-alternatives --set "javac" "/opt/Oracle_Java/jdk-11/bin/javac" && \
- update-alternatives --set "jar" "/opt/Oracle_Java/jdk-11/bin/jar" && \
+ mv jdk-11.0.1 /opt/Oracle_Java/ && \
+ update-alternatives --install "/usr/bin/java" "java" "/opt/Oracle_Java/jdk-11.0.1/bin/java" 1 && \
+ update-alternatives --install "/usr/bin/javac" "javac" "/opt/Oracle_Java/jdk-11.0.1/bin/javac" 1 && \
+ update-alternatives --install "/usr/bin/jar" "jar" "/opt/Oracle_Java/jdk-11.0.1/bin/jar" 1  && \
+ update-alternatives --set "java" "/opt/Oracle_Java/jdk-11.0.1/bin/java" && \
+ update-alternatives --set "javac" "/opt/Oracle_Java/jdk-11.0.1/bin/javac" && \
+ update-alternatives --set "jar" "/opt/Oracle_Java/jdk-11.0.1/bin/jar" && \
  java -version
 
 
