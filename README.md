@@ -24,7 +24,7 @@ You should change the passwords for the users _nbgadmin_ and _nbguser_. To open 
 
 - `docker`  
   Files to build docker image and container as a one-time execution
-- `docker`  
+- `notebooks`  
   Example jupyter notebooks
 - `scripts`  
   Scripts to maintain an existing docker container
