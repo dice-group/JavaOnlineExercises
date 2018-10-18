@@ -4,7 +4,7 @@
 # - A linux user is added
 # - The nbgrader gradebook database is updated
 #
-# Please ensure an escaped encrypted password (take care of '$' and '\$')
+# Please ensure an encrypted password
 
 
 
@@ -32,7 +32,7 @@ SURNAME=$4
 EMAIL=$5
 
 if [ ${#ENCRYPTED_PASSWORD} -ne 34 ]; then
-    echo "Error: The pasword length is not 34. Use \"openssl passwd -1 <password> | sed 's/\$/\\\$/g'\"."
+    echo "Error: The pasword length is not 34. Use \"openssl passwd -1 <password>\"."
     exit 2
 fi
 
@@ -40,6 +40,6 @@ fi
 
 # Execution
 
-docker exec $CONTAINER_NAME adduser --gecos "" --disabled-password $ID
-docker exec $CONTAINER_NAME usermod --password $ENCRYPTED_PASSWORD $ID
-docker exec $CONTAINER_NAME nbgrader db student add --course-dir=$COURSE_DIR --first-name=$FIRST_NAME --last-name=$SURNAME --email=$EMAIL $ID
+docker exec $CONTAINER_NAME adduser --gecos "" --disabled-password "$ID"
+docker exec $CONTAINER_NAME usermod --password "$ENCRYPTED_PASSWORD" "$ID"
+docker exec $CONTAINER_NAME nbgrader db student add --course-dir="$COURSE_DIR" --first-name="$FIRST_NAME" --last-name="$SURNAME" --email="$EMAIL" "$ID"

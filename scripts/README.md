@@ -8,6 +8,10 @@
   Sets a new password for a linux user
 - `create-student.sh`  
   Creates a student account (linux user and nbgrader database)
+- `create-students.sh`  
+  Reads CSV file and adds student accounts
+- `generate-passwords.sh`  
+  Reads a CSV file and creates CSV files with (un-)encrypted passwords
 
 ## Info
 
