@@ -3,7 +3,11 @@
 ## Files
 
 - `bash.sh`  
-  Accesses a bash inside a docker container
+  Accesses a bash
+- `change-password.sh`  
+  Sets a new password for a linux user
+- `create-student.sh`  
+  Creates a student account (linux user and nbgrader database)
 
 ## Info
 
