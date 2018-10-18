@@ -40,9 +40,10 @@ $IMAGE_NAME:$TAG_NAME
 
 # Restore admin home
 
-docker exec $CONTAINER_NAME mkdir /home/nbgadmin
+docker exec $CONTAINER_NAME [ -d /home/nbgadmin ] || mkdir /home/nbgadmin
 docker exec $CONTAINER_NAME cp -R /home/.nbgadmin/. /home/nbgadmin/
 docker exec $CONTAINER_NAME chown -R nbgadmin:nbgadmin /home/nbgadmin
+docker exec $CONTAINER_NAME chmod o-rwx  /home/nbgadmin
 
 
 

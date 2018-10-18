@@ -116,6 +116,23 @@ c.ClearSolutions.code_stub = {\n\
 
 
 
+# Filesystem permissions
+# New homes not readable by others
+# Strict permissions for SSL and /mnt
+# Directory to distribute files
+
+RUN sed -i 's/^DIR_MODE=0755.*/DIR_MODE=0750/' /etc/adduser.conf && \
+ chmod o-rwx /home/* && \
+ chmod -R o-rwx /opt/ssl && \
+ chmod o-rwx /mnt && \
+ mkdir /srv/distribution && \
+ chown nbgadmin:nbgadmin /srv/distribution/ && \
+ echo "hello world!" > /srv/distribution/hello-world.txt && \
+ chmod 775 /srv/distribution/hello-world.txt
+
+
+
 # Create backup of admin users home
 
-RUN cp -R /home/nbgadmin/ /home/.nbgadmin/
+RUN cp -R /home/nbgadmin/ /home/.nbgadmin/ && \
+ chmod o-rwx /home/.nbgadmin/

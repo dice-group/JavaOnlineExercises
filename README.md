@@ -4,14 +4,8 @@ This repository provides scripts and information to offer Web-based Java assignm
 It uses Jupyter Nootbook for web access and the extension nbgrader for assignments.
 Additionally, JupyterHub manages multiple users, IJava provides language support, and files are managed by Docker.
 
-## Directories
 
-- `docker`  
-  Files to build docker image and container as a one-time execution
-- `scripts`  
-  Scripts to maintain an existing docker container
-
-## Setup
+## Quick start
 
 Note: The [wiki](https://github.com/dice-group/nbgraderutils/wiki) provides a more detailed description.
 
@@ -24,6 +18,16 @@ If you used the default settings, you can access the web frontend at [https://lo
 The default admin user is _nbgadmin_, the default student user is _nbguser_, and the default password for both is _nbgpsw_.
 
 You should change the passwords for the users _nbgadmin_ and _nbguser_. To open a bash in the docker container you can use `scripts/bash.sh`. A command to change a user password is `usermod --password $(openssl passwd -1 <PSW>) <USR>`.
+
+
+## Directories
+
+- `docker`  
+  Files to build docker image and container as a one-time execution
+- `docker`  
+  Example jupyter notebooks
+- `scripts`  
+  Scripts to maintain an existing docker container
 
 
 ## Info
