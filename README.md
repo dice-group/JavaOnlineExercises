@@ -17,7 +17,7 @@ Note: The [wiki](https://github.com/dice-group/nbgraderutils/wiki) provides a mo
 If you used the default settings, you can access the web frontend at [https://localhost/](https://localhost/).
 The default admin user is _nbgadmin_, the default student user is _nbguser_, and the default password for both is _nbgpsw_.
 
-You should change the passwords for the users _nbgadmin_ and _nbguser_. To open a bash in the docker container you can use `scripts/bash.sh`. A command to change a user password is `usermod --password $(openssl passwd -1 <PSW>) <USR>`.
+You should change the passwords for the users _nbgadmin_ and _nbguser_. Use change-password.sh in the [scripts](scripts/) directory.
 
 
 ## Directories
