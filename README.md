@@ -20,16 +20,6 @@ The default admin user is _nbgadmin_, the default student user is _nbguser_, and
 You should change the passwords for the users _nbgadmin_ and _nbguser_. Use change-password.sh in the [scripts](scripts/) directory.
 
 
-## Directories
-
-- `docker`  
-  Files to build docker image and container as a one-time execution
-- `notebooks`  
-  Example jupyter notebooks
-- `scripts`  
-  Scripts to maintain an existing docker container
-
-
 ## Info
 
 - Code  
