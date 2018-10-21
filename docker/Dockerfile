@@ -91,7 +91,7 @@ RUN wget --quiet https://github.com/SpencerPark/IJava/releases/download/v1.1.2/i
 
 RUN conda install -c conda-forge nbgrader && \
  mkdir -p /srv/nbgrader/exchange && \
- chmod o-rwx /srv/nbgrader/exchange && \
+ chmod ugo+rw /srv/nbgrader/exchange && \
  jupyter nbextension disable --sys-prefix create_assignment/main && \
  runuser -l  nbgadmin -c '/opt/conda/bin/jupyter nbextension enable --user create_assignment/main' && \
  jupyter nbextension disable --sys-prefix validate_assignment/main && \
@@ -121,6 +121,8 @@ c.ClearSolutions.code_stub = {\n\
 # Homes group is nbgadmin for providing feedback
 # Strict permissions for SSL and /mnt
 # Directory to distribute files
+# Directory to exchange assignments
+# https://nbgrader.readthedocs.io/en/stable/user_guide/managing_assignment_files.html#id8
 
 RUN sed -i 's/^DIR_MODE=0755.*/DIR_MODE=0770/' /etc/adduser.conf && \
  chmod o-rwx /home/* && \
@@ -137,4 +139,5 @@ RUN sed -i 's/^DIR_MODE=0755.*/DIR_MODE=0770/' /etc/adduser.conf && \
 # Create backup of admin users home
 
 RUN cp -R /home/nbgadmin/ /home/.nbgadmin/ && \
- chmod o-rwx /home/.nbgadmin/
+ chmod o-rwx /home/.nbgadmin/ && \
+ chown nbgadmin:nbgadmin /home/.nbgadmin/

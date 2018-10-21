@@ -44,4 +44,7 @@ docker exec $CONTAINER_NAME mkdir /home/nbgadmin/tests
 docker cp ../examples/TestTime.ipynb "$CONTAINER_NAME":/home/nbgadmin/tests/
 docker cp ../examples/TestFilesystem.ipynb "$CONTAINER_NAME":/home/nbgadmin/tests/
 
+docker exec $CONTAINER_NAME mkdir /home/nbguser/tests
+docker cp ../examples/TestFilesystem.ipynb "$CONTAINER_NAME":/home/nbguser/tests/
+
 docker exec $CONTAINER_NAME chown -R nbgadmin:nbgadmin /home/nbgadmin/
