@@ -8,6 +8,12 @@
 
 
 
+# Ensure correct working directory
+
+cd "$(dirname "$0")"
+
+
+
 # Check input parameters
 
 if [ $# -ne 1 ]; then

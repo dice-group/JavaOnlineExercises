@@ -15,6 +15,12 @@ COURSE_DIR="/home/nbgadmin/"
 
 
 
+# Ensure correct working directory
+
+cd "$(dirname "$0")"
+
+
+
 # If container.txt exists, the including container name will be used.
 
 if [ -e container.txt ]
