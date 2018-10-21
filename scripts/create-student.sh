@@ -15,6 +15,15 @@ COURSE_DIR="/home/nbgadmin/"
 
 
 
+# If container.txt exists, the including container name will be used.
+
+if [ -e container.txt ]
+then
+    CONTAINER_NAME=`cat container.txt`
+fi
+
+
+
 # Check input parameters
 
 if [ $# -ne 5 ]; then
@@ -42,4 +51,5 @@ fi
 
 docker exec $CONTAINER_NAME adduser --gecos "" --disabled-password "$ID"
 docker exec $CONTAINER_NAME usermod --password "$ENCRYPTED_PASSWORD" "$ID"
+docker exec $CONTAINER_NAME chgrp nbgadmin "/home/$ID"
 docker exec $CONTAINER_NAME nbgrader db student add --course-dir="$COURSE_DIR" --first-name="$FIRST_NAME" --last-name="$SURNAME" --email="$EMAIL" "$ID"

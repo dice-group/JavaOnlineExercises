@@ -38,16 +38,18 @@ $IMAGE_NAME:$TAG_NAME
 
 
 
+# Create container info in scripts directory
+
+if [ -e ../scripts ]
+then
+    echo $CONTAINER_NAME > ../scripts/container.txt
+fi
+
+
+
 # Restore admin home
 
 docker exec $CONTAINER_NAME [ -d /home/nbgadmin ] || mkdir /home/nbgadmin
 docker exec $CONTAINER_NAME cp -R /home/.nbgadmin/. /home/nbgadmin/
 docker exec $CONTAINER_NAME chown -R nbgadmin:nbgadmin /home/nbgadmin
 docker exec $CONTAINER_NAME chmod o-rwx  /home/nbgadmin
-
-
-
-echo ""
-echo "Please change the passwords for users nbgadmin and nbguser manually"
-echo "usermod --password \$(openssl passwd -1 <PSW>) <USR>"
-echo ""

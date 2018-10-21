@@ -31,7 +31,7 @@ RUN apt-get -y update && \
 
 RUN mkdir -p /opt/ssl && \
  cd /opt/ssl && \
- openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes -subj "/C=DE/ST=NRW/L=Paderborn/O=UPB/OU=DICE/CN=diceapp.cs.upb.de"
+ openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes -subj "/C=DE/ST=NRW/L=Paderborn/O=UPB/OU=DICE/CN=dice.cs.upb.de"
 
 
 
@@ -71,7 +71,7 @@ RUN python3 -m pip install notebook && \
  jupyterhub --generate-config && \
  sed -i 's/^#c.JupyterHub.ssl_cert.*/c.JupyterHub.ssl_cert = "\/opt\/ssl\/cert.pem"/' /srv/jupyterhub/jupyterhub_config.py && \
  sed -i 's/^#c.JupyterHub.ssl_key.*/c.JupyterHub.ssl_key = "\/opt\/ssl\/key.pem"/' /srv/jupyterhub/jupyterhub_config.py && \
- sed -i 's/^#c.JupyterHub.admin_users.*/c.Authenticator.admin_users = set(["nbgadmin"])/' /srv/jupyterhub/jupyterhub_config.py && \
+ sed -i 's/^#c.Authenticator.admin_users.*/c.Authenticator.admin_users = set(["nbgadmin"])/' /srv/jupyterhub/jupyterhub_config.py && \
  cd /mnt && \
  ln -s /srv/jupyterhub/jupyterhub_config.py
 
@@ -91,7 +91,7 @@ RUN wget --quiet https://github.com/SpencerPark/IJava/releases/download/v1.1.2/i
 
 RUN conda install -c conda-forge nbgrader && \
  mkdir -p /srv/nbgrader/exchange && \
- chmod ugo+rw /srv/nbgrader/exchange && \
+ chmod o-rwx /srv/nbgrader/exchange && \
  jupyter nbextension disable --sys-prefix create_assignment/main && \
  runuser -l  nbgadmin -c '/opt/conda/bin/jupyter nbextension enable --user create_assignment/main' && \
  jupyter nbextension disable --sys-prefix validate_assignment/main && \
@@ -118,11 +118,13 @@ c.ClearSolutions.code_stub = {\n\
 
 # Filesystem permissions
 # New homes not readable by others
+# Homes group is nbgadmin for providing feedback
 # Strict permissions for SSL and /mnt
 # Directory to distribute files
 
-RUN sed -i 's/^DIR_MODE=0755.*/DIR_MODE=0750/' /etc/adduser.conf && \
+RUN sed -i 's/^DIR_MODE=0755.*/DIR_MODE=0770/' /etc/adduser.conf && \
  chmod o-rwx /home/* && \
+ chgrp nbgadmin /home/* && \
  chmod -R o-rwx /opt/ssl && \
  chmod o-rwx /mnt && \
  mkdir /srv/distribution && \
