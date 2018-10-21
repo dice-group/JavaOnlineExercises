@@ -18,6 +18,12 @@ TAG_NAME="latest"
 
 
 
+# Ensure correct working directory
+
+cd "$(dirname "$0")"
+
+
+
 # Execution
 
 echo "Monitor the progress with: tail -f -n 20 build.log"

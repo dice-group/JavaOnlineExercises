@@ -10,6 +10,15 @@ CONTAINER_NAME="nbgjava"
 
 
 
+# If container.txt exists, the including container name will be used.
+
+if [ -e container.txt ]
+then
+    CONTAINER_NAME=`cat container.txt`
+fi
+
+
+
 # Check input parameters
 
 if [ $# -ne 2 ]; then

@@ -19,11 +19,17 @@ TAG_NAME="latest"
 
 CONTAINER_NAME="nbgjava"
 
-PORT_HOST="443"
+PORT_HOST="8000"
 PORT_CONTAINER="8000"
 
 MOUNT_DIR_HOST="/mnt/nbgjava"
 MOUNT_DIR_CONTAINER="/home/nbgadmin"
+
+
+
+# Ensure correct working directory
+
+cd "$(dirname "$0")"
 
 
 
