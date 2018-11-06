@@ -1,29 +1,98 @@
 # Dockerfile for Jupyter notebook + nbgrader + Java kernel
+# https://github.com/dice-group/nbgraderutils
 
 
 
 # Based on
-# Jupyterhub 0.94
+#  Jupyterhub 0.94
 # which is based on
-# Ubuntu 18.04 LTS
-# https://hub.docker.com/r/jupyterhub/jupyterhub/tags/
+#  Ubuntu 18.04 LTS
+# https://hub.docker.com/r/jupyterhub/jupyterhub/
+# https://hub.docker.com/r/library/ubuntu/
+# https://github.com/jupyterhub/jupyterhub/blob/0.9.4/Dockerfile
 
 FROM jupyterhub/jupyterhub:0.9.4
 LABEL maintainer="Adrian Wilke <adrian.wilke@upb.REMOVEME.de>"
 
 
 
-# Update the system and install packages
+# Update the system and install
+# - APT utils
 
 RUN apt-get -y update && \
- apt-get -y upgrade && \
+ apt-get -y install \
+ apt-utils
+
+
+
+# Upgrade the system and install
+# - nano editor
+# - zip (including unzip)
+
+RUN apt-get -y upgrade && \
  apt-get -y install \
  nano \
- zip \
+ zip
+
+
+
+# Install Java
+# - Java 11 JRE (OpenJDK)
+# - Java 11 JDK (OpenJDK)
+# https://wiki.ubuntuusers.de/Java/Installation/OpenJDK/
+
+RUN apt-get -y install \
+ openjdk-11-jre \
+ openjdk-11-jdk \
+ openjdk-11-demo \
+ openjdk-11-doc \
+ openjdk-11-jre-headless \
+ openjdk-11-source \
  && \
  apt-get purge && \
  apt-get clean && \
  rm -rf /var/lib/apt/lists/*
+
+
+
+# Install Jupyter notebook
+# https://hub.docker.com/r/jupyterhub/jupyterhub/#installation
+
+RUN python3 -m pip install notebook
+
+
+
+# Install Java kernel / iJava
+# https://github.com/SpencerPark/IJava
+
+RUN wget --quiet https://github.com/SpencerPark/IJava/releases/download/v1.2.0/ijava-1.2.0.zip && \
+ unzip ijava-1.2.0.zip && \
+ python3 install.py --sys-prefix
+
+
+
+# Create linux users (default admin and user for nbgrader)
+# Set default password nbgpsw
+
+RUN useradd --create-home nbgadmin && \
+ useradd --create-home nbguser && \
+ usermod --password \$1\$xg4dbNmA\$ygNrKGsFBsu8hXoGieRSK0 nbgadmin && \
+ usermod --password \$1\$xg4dbNmA\$ygNrKGsFBsu8hXoGieRSK0 nbguser
+
+
+
+# Install nbgrader
+# Create directory for pushing/pulling assignments
+# Disable extensions for non-admins
+# https://nbgrader.readthedocs.io/en/stable/user_guide/installation.html
+
+RUN conda install -c conda-forge nbgrader && \
+ jupyter nbextension disable --sys-prefix create_assignment/main && \
+ runuser -l  nbgadmin -c '/opt/conda/bin/jupyter nbextension enable --user create_assignment/main' && \
+ jupyter nbextension disable --sys-prefix validate_assignment/main && \
+ runuser -l  nbgadmin -c '/opt/conda/bin/jupyter nbextension enable --user validate_assignment/main' && \
+ jupyter nbextension disable --sys-prefix formgrader/main --section=tree && \
+ runuser -l  nbgadmin -c '/opt/conda/bin/jupyter nbextension enable --user formgrader/main --section=tree'
 
 
 
@@ -35,39 +104,12 @@ RUN mkdir -p /opt/ssl && \
 
 
 
-# Create an admin and a user
-# Set default password nbgpsw
-
-RUN useradd --create-home nbgadmin && \
- useradd --create-home nbguser && \
- usermod --password \$1\$xg4dbNmA\$ygNrKGsFBsu8hXoGieRSK0 nbgadmin && \
- usermod --password \$1\$xg4dbNmA\$ygNrKGsFBsu8hXoGieRSK0 nbguser
-
-
-
-# Install Java 11
-# https://wiki.ubuntuusers.de/Java/Oracle_Java/
-
-RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/11.0.1+13/90cf5d8f270a4347a95050320eef3fb7/jdk-11.0.1_linux-x64_bin.tar.gz && \
- tar xzf jdk-11.0.1_linux-x64_bin.tar.gz && \
- mkdir /opt/Oracle_Java/ && \
- mv jdk-11.0.1 /opt/Oracle_Java/ && \
- update-alternatives --install "/usr/bin/java" "java" "/opt/Oracle_Java/jdk-11.0.1/bin/java" 1 && \
- update-alternatives --install "/usr/bin/javac" "javac" "/opt/Oracle_Java/jdk-11.0.1/bin/javac" 1 && \
- update-alternatives --install "/usr/bin/jar" "jar" "/opt/Oracle_Java/jdk-11.0.1/bin/jar" 1  && \
- update-alternatives --set "java" "/opt/Oracle_Java/jdk-11.0.1/bin/java" && \
- update-alternatives --set "javac" "/opt/Oracle_Java/jdk-11.0.1/bin/javac" && \
- update-alternatives --set "jar" "/opt/Oracle_Java/jdk-11.0.1/bin/jar" && \
- java -version
-
-
-
-# Install Jupyter notebook
-# Create configuration file
+# Configure Jupyter
 # https://jupyterhub.readthedocs.io/en/stable/getting-started/security-basics.html
+# https://jupyterhub.readthedocs.io/en/stable/getting-started/authenticators-users-basics.html
+# https://jupyterhub.readthedocs.io/en/stable/reference/config-user-env.html
 
-RUN python3 -m pip install notebook && \
- cd /srv/jupyterhub/ && \
+RUN cd /srv/jupyterhub/ && \
  jupyterhub --generate-config && \
  sed -i 's/^#c.JupyterHub.ssl_cert.*/c.JupyterHub.ssl_cert = "\/opt\/ssl\/cert.pem"/' /srv/jupyterhub/jupyterhub_config.py && \
  sed -i 's/^#c.JupyterHub.ssl_key.*/c.JupyterHub.ssl_key = "\/opt\/ssl\/key.pem"/' /srv/jupyterhub/jupyterhub_config.py && \
@@ -77,58 +119,41 @@ RUN python3 -m pip install notebook && \
 
 
 
-# Install Java kernel / iJava
-
-RUN wget --quiet https://github.com/SpencerPark/IJava/releases/download/v1.1.2/ijava-1.1.2.zip && \
- unzip ijava-1.1.2.zip && \
- python3 install.py --sys-prefix
-
-
-
-# Install nbgrader
-# Create directory for pushing/pulling assignments
-# Disable extensions for non-admins
-
-RUN conda install -c conda-forge nbgrader && \
- mkdir -p /srv/nbgrader/exchange && \
- chmod ugo+rw /srv/nbgrader/exchange && \
- jupyter nbextension disable --sys-prefix create_assignment/main && \
- runuser -l  nbgadmin -c '/opt/conda/bin/jupyter nbextension enable --user create_assignment/main' && \
- jupyter nbextension disable --sys-prefix validate_assignment/main && \
- runuser -l  nbgadmin -c '/opt/conda/bin/jupyter nbextension enable --user validate_assignment/main' && \
- jupyter nbextension disable --sys-prefix formgrader/main --section=tree && \
- runuser -l  nbgadmin -c '/opt/conda/bin/jupyter nbextension enable --user formgrader/main --section=tree'
-
-
-
 # Configure nbgrader
+# https://nbgrader.readthedocs.io/en/stable/configuration/config_options.html
+# https://nbgrader.readthedocs.io/en/stable/user_guide/managing_assignment_files.html#id8
 
-RUN echo "c = get_config()\n\
+RUN mkdir -p /srv/nbgrader/exchange && \
+ chmod ugo+rw /srv/nbgrader/exchange \
+ && \
+ echo "c = get_config()\n\
 c.Exchange.course_id = \"default-course\"\n\
 c.Exchange.root = '/srv/nbgrader/exchange'\n\
 c.ClearSolutions.code_stub = {\n\
 'python': '# YOUR CODE HERE',\n\
 'java': '// YOUR CODE HERE',\n\
 }" \
-> /opt/conda/etc/jupyter/nbgrader_config.py && \
+> /opt/conda/etc/jupyter/nbgrader_config.py  \
+ && \
  cd /mnt && \
  ln -s /opt/conda/etc/jupyter/nbgrader_config.py
 
 
 
-# Filesystem permissions
-# New homes not readable by others
-# Homes group is nbgadmin for providing feedback
-# Strict permissions for SSL and /mnt
-# Directory to distribute files
-# Directory to exchange assignments
-# https://nbgrader.readthedocs.io/en/stable/user_guide/managing_assignment_files.html#id8
+# - Default filesystem permissions
+#   New homes not readable by others
+# - Homes group is nbgadmin for providing feedback
+# - Strict permissions for SSL and /mnt
+# - Directory to distribute files
 
 RUN sed -i 's/^DIR_MODE=0755.*/DIR_MODE=0770/' /etc/adduser.conf && \
- chmod o-rwx /home/* && \
- chgrp nbgadmin /home/* && \
+ chmod o-rwx /home/* \
+ && \
+ chgrp nbgadmin /home/* \
+ && \
  chmod -R o-rwx /opt/ssl && \
- chmod o-rwx /mnt && \
+ chmod o-rwx /mnt \
+ && \
  mkdir /srv/distribution && \
  chown nbgadmin:nbgadmin /srv/distribution/ && \
  echo "hello world!" > /srv/distribution/hello-world.txt && \
