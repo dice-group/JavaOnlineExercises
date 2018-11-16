@@ -7,6 +7,7 @@
 #  Jupyterhub 0.94
 # which is based on
 #  Ubuntu 18.04 LTS
+# https://jupyterhub.readthedocs.io/en/stable/quickstart-docker.html
 # https://hub.docker.com/r/jupyterhub/jupyterhub/
 # https://hub.docker.com/r/library/ubuntu/
 # https://github.com/jupyterhub/jupyterhub/blob/0.9.4/Dockerfile
@@ -84,9 +85,11 @@ RUN useradd --create-home nbgadmin && \
 # Install nbgrader
 # Create directory for pushing/pulling assignments
 # Disable extensions for non-admins
+# https://conda-forge.org/docs/
+# https://anaconda.org/conda-forge/nbgrader/labels
 # https://nbgrader.readthedocs.io/en/stable/user_guide/installation.html
 
-RUN conda install -c conda-forge nbgrader && \
+RUN conda install -c conda-forge nbgrader=0.5.4 && \
  jupyter nbextension disable --sys-prefix create_assignment/main && \
  runuser -l  nbgadmin -c '/opt/conda/bin/jupyter nbextension enable --user create_assignment/main' && \
  jupyter nbextension disable --sys-prefix validate_assignment/main && \
