@@ -1,6 +1,6 @@
 # nbgraderutils: Automatically graded Java web exercises
 
-This repository provides scripts and information to offer Web-based Java assignments.
+This repository provides scripts and information to offer web-based Java assignments.
 
 It uses *Jupyter Notebook* for web access and the extension *nbgrader* for assignments.
 Additionally, *JupyterHub* manages multiple users, *IJava* provides language support, and files are managed by *Docker*.
