@@ -91,10 +91,8 @@ RUN useradd --create-home nbgadmin && \
 
 RUN conda install -c conda-forge nbgrader=0.5.4 && \
  jupyter nbextension disable --sys-prefix create_assignment/main && \
- runuser -l  nbgadmin -c '/opt/conda/bin/jupyter nbextension enable --user create_assignment/main' && \
- jupyter nbextension disable --sys-prefix validate_assignment/main && \
- runuser -l  nbgadmin -c '/opt/conda/bin/jupyter nbextension enable --user validate_assignment/main' && \
  jupyter nbextension disable --sys-prefix formgrader/main --section=tree && \
+ runuser -l  nbgadmin -c '/opt/conda/bin/jupyter nbextension enable --user create_assignment/main' && \
  runuser -l  nbgadmin -c '/opt/conda/bin/jupyter nbextension enable --user formgrader/main --section=tree'
 
 
@@ -155,6 +153,15 @@ c.ClearSolutions.code_stub = {\n\
  && \
  cd /mnt && \
  ln -s /opt/conda/etc/jupyter/nbgrader_config.py
+
+
+
+# Create nbgrader accounts for nbgadmin and nbguser
+# (Avoids autograding errors, if these accounts submitted solution)
+
+RUN cd /home/nbgadmin/ && \
+ nbgrader db student add nbgadmin && \
+ nbgrader db student add nbguser
 
 
 
