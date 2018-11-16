@@ -1,23 +1,33 @@
-# nbgraderutils
+# nbgraderutils: Automatically graded Java web exercises
 
-This repository provides scripts and information to offer Web-based Java assignments.
-It uses Jupyter Nootbook for web access and the extension nbgrader for assignments.
-Additionally, JupyterHub manages multiple users, IJava provides language support, and files are managed by Docker.
+This repository provides scripts and information to offer Web-based Java assignments.  
+It uses *Jupyter Notebook* for web access and the extension *nbgrader* for assignments.
+Additionally, *JupyterHub* manages multiple users, *IJava* provides language support, and files are managed by *Docker*.
 
 
 ## Quick start
 
-Note: The [wiki](https://github.com/dice-group/nbgraderutils/wiki) provides a more detailed description.
+1. **Install Docker**  
+   [www.docker.com](https://www.docker.com/)
+2. **Download nbgraderutils**  
+   `wget https://github.com/dice-group/nbgraderutils/archive/master.zip`
+3. **Unpack**  
+   `unzip master.zip`
+4. **Build Docker image**  
+   `sudo ./nbgraderutils-master/docker/1-build-image.sh`  
+   (This creates a Docker image *nbgjava* and the tag *latest*. It takes about 9 minutes.)
+5. **Run Docker container**  
+   `sudo ./nbgraderutils-master/docker/2-run-container.sh`  
+   (This uses the mount point */mnt/nbgjava* and the port *8000*. If you want to change this configuration, edit the file first.)
+6. **Initialize the system**  
+  `sudo ./nbgraderutils-master/scripts/initialize.sh`  
+   (This creates example student accounts *nbgtesta*, *nbgtestb*, and *nbgtestc*.
+   It also copies assignment templates.)
+7. **Go ahead**  
+   Open [https://localhost:8000/](https://localhost:8000/)  
+   (You can use the teacher account *nbgadmin*, and the student test accounts *nbgtesta*, *nbgtestb*, *nbgtestc*, and *nbguser*. All passwords are *nbgpsw*. You have to change the passwords for public installations.)
 
-1. Optional: Edit `docker/1-build-image.sh` to set the used docker image and tag name.
-2. Execute `docker/1-build-image.sh`. This will use `docker/Dockerfile`. The execution output will be appended into a file named build.log.
-3. Optional: Edit `docker/2-run-container.sh` to set the used docker container name, the access port, and the mount point for backups.
-4. Execute `docker/2-run-container.sh`. This will build and start the docker container.
-
-If you used the default settings, you can access the web frontend at [https://localhost/](https://localhost/).
-The default admin user is _nbgadmin_, the default student user is _nbguser_, and the default password for both is _nbgpsw_.
-
-You should change the passwords for the users _nbgadmin_ and _nbguser_. Use change-password.sh in the [scripts](scripts/) directory.
+The [wiki](https://github.com/dice-group/nbgraderutils/wiki) provides detailed descriptions.
 
 
 ## Info
@@ -26,5 +36,7 @@ You should change the passwords for the users _nbgadmin_ and _nbguser_. Use chan
   https://github.com/dice-group/nbgraderutils
 - Documentation  
   https://github.com/dice-group/nbgraderutils/wiki
--  Credits  
+- Credits  
+  Data Science Group (DICE) at Paderborn University  
+  Adrian Wilke and Michael Röder  
   https://dice.cs.uni-paderborn.de/
