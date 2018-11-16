@@ -12,21 +12,19 @@ If you haven't heard of *nbgrader* yet, you can watch the video [YouTube: nbgrad
 
 1. **Install Docker**  
    [www.docker.com](https://www.docker.com/)
-2. **Download nbgraderutils**  
-   `wget https://github.com/dice-group/nbgraderutils/archive/master.zip`
-3. **Unpack**  
+2. **Download and unpack nbgraderutils**  
+   `wget https://github.com/dice-group/nbgraderutils/archive/master.zip`  
    `unzip master.zip`
-4. **Build Docker image**  
-   `sudo ./nbgraderutils-master/docker/1-build-image.sh`  
-   (This creates a Docker image *nbgjava* and the tag *latest*. It takes about 9 minutes.)
-5. **Run Docker container**  
-   `sudo ./nbgraderutils-master/docker/2-run-container.sh`  
-   (This uses the mount point */mnt/nbgjava* and the port *8000*. If you want to change this configuration, edit the file first.)
-6. **Initialize the system**  
+3. **Build Docker image**  
+   `sudo docker build -t nbgjava:latest nbgraderutils-master/docker/`  
+   (This takes about 9 minutes.)
+4. **Run Docker container**  
+   `sudo docker run -t -d -p 8000:8000 --name nbgjava nbgjava:latest`  
+5. **Initialize the system**  
   `sudo ./nbgraderutils-master/scripts/initialize.sh`  
    (This creates example student accounts *nbgtesta*, *nbgtestb*, and *nbgtestc*.
    It also copies assignment templates.)
-7. **Go ahead**  
+6. **Go ahead**  
    Open [https://localhost:8000/](https://localhost:8000/)  
    Ignore messages like 'Your connection is not private' for now.  
    You can use the teacher account *nbgadmin*, and the student test accounts *nbgtesta*, *nbgtestb*, *nbgtestc*, and *nbguser*.  
