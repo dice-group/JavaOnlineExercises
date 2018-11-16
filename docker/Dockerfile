@@ -107,7 +107,7 @@ RUN mkdir -p /opt/ssl && \
 
 
 
-# Configure Jupyter
+# Configure JupyterHub
 # https://jupyterhub.readthedocs.io/en/stable/getting-started/security-basics.html
 # https://jupyterhub.readthedocs.io/en/stable/getting-started/authenticators-users-basics.html
 # https://jupyterhub.readthedocs.io/en/stable/reference/config-user-env.html
@@ -119,6 +119,21 @@ RUN cd /srv/jupyterhub/ && \
  sed -i 's/^#c.Authenticator.admin_users.*/c.Authenticator.admin_users = set(["nbgadmin"])/' /srv/jupyterhub/jupyterhub_config.py && \
  cd /mnt && \
  ln -s /srv/jupyterhub/jupyterhub_config.py
+
+
+
+# Configure Jupyter
+# https://jupyterhub.readthedocs.io/en/stable/getting-started/config-basics.html
+# https://jupyterhub.readthedocs.io/en/stable/reference/config-user-env.html
+# https://jupyter-notebook.readthedocs.io/en/stable/config_overview.html
+RUN jupyter notebook --generate-config && \
+ sed -i 's/^#c.NotebookApp.shutdown_no_activity_timeout.*/c.NotebookApp.shutdown_no_activity_timeout = 60 * 60/' /root/.jupyter/jupyter_notebook_config.py && \
+ sed -i 's/^#c.MappingKernelManager.cull_idle_timeout.*/c.MappingKernelManager.cull_idle_timeout = 20 * 60/' /root/.jupyter/jupyter_notebook_config.py && \
+ sed -i 's/^#c.MappingKernelManager.cull_interval.*/c.MappingKernelManager.cull_interval = 2 * 60/' /root/.jupyter/jupyter_notebook_config.py \
+ && \
+ [ -d /etc/jupyter/ ] || mkdir -p /etc/jupyter/ && \
+ mv /root/.jupyter/jupyter_notebook_config.py /etc/jupyter/ && \
+ ln -s /etc/jupyter/jupyter_notebook_config.py /mnt/
 
 
 
