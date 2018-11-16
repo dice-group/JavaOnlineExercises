@@ -172,7 +172,8 @@ RUN cd /home/nbgadmin/ && \
 # - Directory to distribute files
 
 RUN sed -i 's/^DIR_MODE=0755.*/DIR_MODE=0770/' /etc/adduser.conf && \
- chmod o-rwx /home/* \
+ chmod o-rwx /home/* && \
+ chmod g+rwx /home/* \
  && \
  chgrp nbgadmin /home/* \
  && \
