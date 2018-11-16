@@ -1,8 +1,11 @@
 # nbgraderutils: Automatically graded Java web exercises
 
-This repository provides scripts and information to offer Web-based Java assignments.  
+This repository provides scripts and information to offer Web-based Java assignments.
+
 It uses *Jupyter Notebook* for web access and the extension *nbgrader* for assignments.
 Additionally, *JupyterHub* manages multiple users, *IJava* provides language support, and files are managed by *Docker*.
+
+If you haven't heard of *nbgrader* yet, you can watch the video [YouTube: nbgrader at SciPy 2017](https://www.youtube.com/watch?v=5WUm0QuJdFw).
 
 
 ## Quick start
@@ -25,7 +28,9 @@ Additionally, *JupyterHub* manages multiple users, *IJava* provides language sup
    It also copies assignment templates.)
 7. **Go ahead**  
    Open [https://localhost:8000/](https://localhost:8000/)  
-   (You can use the teacher account *nbgadmin*, and the student test accounts *nbgtesta*, *nbgtestb*, *nbgtestc*, and *nbguser*. All passwords are *nbgpsw*. You have to change the passwords for public installations.)
+   Ignore messages like 'Your connection is not private' for now.  
+   You can use the teacher account *nbgadmin*, and the student test accounts *nbgtesta*, *nbgtestb*, *nbgtestc*, and *nbguser*.  
+   All passwords are *nbgpsw*. You have to change the passwords for public installations.
 
 The [wiki](https://github.com/dice-group/nbgraderutils/wiki) provides detailed descriptions.
 
