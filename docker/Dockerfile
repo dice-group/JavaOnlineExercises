@@ -172,7 +172,7 @@ RUN cd /home/nbgadmin/ && \
 # - Directory to distribute files
 
 RUN sed -i 's/^DIR_MODE=0755.*/DIR_MODE=0770/' /etc/adduser.conf && \
- chmod o-rwx /home/* && \
+ chmod go-rwx /home/* && \
  chmod g+rwx /home/* \
  && \
  chgrp nbgadmin /home/* \
@@ -189,6 +189,5 @@ RUN sed -i 's/^DIR_MODE=0755.*/DIR_MODE=0770/' /etc/adduser.conf && \
 
 # Create backup of admin users home
 
-RUN cp -R /home/nbgadmin/ /home/.nbgadmin/ && \
- chmod o-rwx /home/.nbgadmin/ && \
+RUN cp -Rp /home/nbgadmin/ /home/.nbgadmin/ && \
  chown nbgadmin:nbgadmin /home/.nbgadmin/
