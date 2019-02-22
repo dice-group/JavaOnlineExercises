@@ -89,7 +89,7 @@ RUN useradd --create-home nbgadmin && \
 # https://anaconda.org/conda-forge/nbgrader/labels
 # https://nbgrader.readthedocs.io/en/stable/user_guide/installation.html
 
-RUN conda install -c conda-forge nbgrader=0.5.4 && \
+RUN conda install -c conda-forge nbgrader=0.5.5 && \
  jupyter nbextension disable --sys-prefix create_assignment/main && \
  jupyter nbextension disable --sys-prefix formgrader/main --section=tree && \
  runuser -l  nbgadmin -c '/opt/conda/bin/jupyter nbextension enable --user create_assignment/main' && \
@@ -101,7 +101,7 @@ RUN conda install -c conda-forge nbgrader=0.5.4 && \
 
 RUN mkdir -p /opt/ssl && \
  cd /opt/ssl && \
- openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes -subj "/C=DE/ST=NRW/L=Paderborn/O=UPB/OU=DICE/CN=dice.cs.upb.de"
+ /usr/bin/openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes -subj "/C=DE/ST=NRW/L=Paderborn/O=UPB/OU=DICE/CN=dice.cs.upb.de"
 
 
 

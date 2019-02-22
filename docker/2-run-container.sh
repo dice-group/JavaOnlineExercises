@@ -14,16 +14,17 @@
 
 # Configuration
 
+CONTAINER_NAME="nbgjava"
+PORT_HOST="8000"
+MOUNT_DIR_HOST="/mnt/nbgjava"
+
+# Image source for the container to create
 IMAGE_NAME="nbgjava"
 TAG_NAME="latest"
 
-CONTAINER_NAME="nbgjava"
-
-PORT_HOST="8000"
-PORT_CONTAINER="8000"
-
-MOUNT_DIR_HOST="/mnt/nbgjava"
+# Static Container configuration
 MOUNT_DIR_CONTAINER="/home/nbgadmin"
+PORT_CONTAINER="8000"
 
 
 

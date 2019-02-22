@@ -30,8 +30,8 @@ If you haven't heard of *nbgrader* yet, you can watch the video [YouTube: nbgrad
    You can use the teacher account *nbgadmin*, and the student test accounts *nbgtesta*, *nbgtestb*, *nbgtestc*, and *nbguser*.  
    All passwords are *nbgpsw*. You have to change the passwords for public installations.
 
-The [wiki](https://github.com/dice-group/nbgraderutils/wiki) provides detailed descriptions.
-
+The [wiki](https://github.com/dice-group/nbgraderutils/wiki) provides detailed descriptions.  
+There are scripts for an installation on a virtual machine. This variant provides a mounted directory to create backups. It is described on the [installation](https://github.com/dice-group/nbgraderutils/wiki/Installation) wiki page.
 
 ## Info
 
