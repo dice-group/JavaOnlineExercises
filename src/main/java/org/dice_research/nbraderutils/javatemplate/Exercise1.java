@@ -11,7 +11,7 @@ public class Exercise1 {
 	 * Converts a String to the numeric ASCII representation of its single
 	 * characters.
 	 */
-	int[] toNumericAscii(String string) {
+	public int[] toNumericAscii(String string) {
 		int[] result = new int[string.length()];
 
 		// BEGIN SOLUTION
