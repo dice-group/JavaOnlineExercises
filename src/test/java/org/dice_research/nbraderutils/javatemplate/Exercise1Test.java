@@ -12,11 +12,11 @@ import org.opentest4j.AssertionFailedError;
  */
 class Exercise1Test {
 
-	void test(String inputString, int[] expectedResult) {
+	void test(String inputString, int[] expectedResult, String testDescription) {
 		try {
 			long time = System.currentTimeMillis();
 
-			Assertions.assertArrayEquals(expectedResult, new Exercise1().toNumericAscii(inputString));
+			Assertions.assertArrayEquals(expectedResult, new Exercise1().toNumericAscii(inputString), testDescription);
 
 			time = System.currentTimeMillis() - time;
 			System.out.println("Test(s) successfully completed. Calculation took " + time + " ms.");
@@ -32,7 +32,7 @@ class Exercise1Test {
 	@Test
 	void testVisible() {
 
-		test("Hi", new int[] { 72, 105 });
+		test("Hi", new int[] { 72, 105 }, "Testing 'Hi'");
 
 	}
 
@@ -40,7 +40,7 @@ class Exercise1Test {
 	void testHidden1() {
 
 		// The first hidden test should be similar to the visible test.
-		test("Ho", new int[] { 72, 111 });
+		test("Ho", new int[] { 72, 111 }, "Testing 'Ho'");
 
 		// Set the points for this test.
 		OverallPointsTest.addPoints(14, this.getClass());
@@ -51,7 +51,7 @@ class Exercise1Test {
 	void testHidden2() {
 
 		// An additional test.
-		test("HiHo", new int[] { 72, 105, 72, 111 });
+		test("HiHo", new int[] { 72, 105, 72, 111 }, "Testing 'HiHo'");
 
 		// Set the points for this test.
 		OverallPointsTest.addPoints(10, this.getClass());
