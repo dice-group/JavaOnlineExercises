@@ -145,6 +145,7 @@ RUN mkdir -p /srv/nbgrader/exchange && \
  echo "c = get_config()\n\
 c.Exchange.course_id = \"default-course\"\n\
 c.Exchange.root = '/srv/nbgrader/exchange'\n\
+c.ExecutePreprocessor.timeout = 300\n\
 c.ClearSolutions.code_stub = {\n\
 'python': '# YOUR CODE HERE',\n\
 'java': '// YOUR CODE HERE',\n\
