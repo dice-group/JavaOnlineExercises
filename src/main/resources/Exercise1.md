@@ -32,14 +32,3 @@ Implement a method which converts a String to the numeric ASCII representation o
 #### Hints
 
 - The [String class](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html#toCharArray()) provides methods for conversion.
-
-#### Notes
-
-- Do not add additional external libraries.
-- Interface
-  - You can use _[TAB]_ for auto-completion and _[SHIFT]_+_[TAB]_ for code inspection.
-  - Check _Menu_ -> _Help_ -> _Keyboard Shortcuts_.
-- Finish
-  - Save your solution by clicking on the _disk icon_.
-  - Finally, choose _Menu_ -> _File_ -> _Close and Halt_.
-  - Do not forget to _Submit_ your solution in the _Assignments_ view.
