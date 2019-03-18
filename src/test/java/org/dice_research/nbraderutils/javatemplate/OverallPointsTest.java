@@ -45,6 +45,7 @@ class OverallPointsTest {
 			exerciseBuilder.append(pointsExercise);
 			exerciseBuilder.append(" = ");
 			exerciseBuilder.append(testBuilder);
+			exerciseBuilder.append(System.lineSeparator());
 			pointsAssignment += pointsExercise;
 		}
 		System.out.println(exerciseBuilder.toString());

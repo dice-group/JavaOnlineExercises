@@ -38,9 +38,13 @@ class Exercise1Test {
 
 	@Test
 	void testHidden1() {
+		// Ignore this cell
+		// BEGIN HIDDEN TESTS
 
 		// The first hidden test should be similar to the visible test.
 		test("Ho", new int[] { 72, 111 }, "Testing 'Ho'");
+
+		// END HIDDEN TESTS
 
 		// Set the points for this test.
 		OverallPointsTest.addPoints(14, this.getClass());
@@ -49,9 +53,13 @@ class Exercise1Test {
 
 	@Test
 	void testHidden2() {
+		// Ignore this cell
+		// BEGIN HIDDEN TESTS
 
 		// An additional test.
 		test("HiHo", new int[] { 72, 105, 72, 111 }, "Testing 'HiHo'");
+
+		// END HIDDEN TESTS
 
 		// Set the points for this test.
 		OverallPointsTest.addPoints(10, this.getClass());
