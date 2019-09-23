@@ -4,7 +4,7 @@
 
 
 # Based on
-#  Jupyterhub 0.94
+#  Jupyterhub 1.0.0
 # which is based on
 #  Ubuntu 18.04 LTS
 # https://jupyterhub.readthedocs.io/en/stable/quickstart-docker.html
@@ -12,7 +12,7 @@
 # https://hub.docker.com/r/library/ubuntu/
 # https://github.com/jupyterhub/jupyterhub/blob/0.9.4/Dockerfile
 
-FROM jupyterhub/jupyterhub:0.9.4
+FROM jupyterhub/jupyterhub:1.0.0
 LABEL maintainer="Adrian Wilke <adrian.wilke@upb.REMOVEME.de>"
 
 
@@ -65,9 +65,8 @@ RUN python3 -m pip install notebook
 
 # Install Java kernel / iJava
 # https://github.com/SpencerPark/IJava
-
-RUN wget --quiet https://github.com/SpencerPark/IJava/releases/download/v1.2.0/ijava-1.2.0.zip && \
- unzip ijava-1.2.0.zip && \
+RUN wget --quiet https://github.com/SpencerPark/IJava/releases/download/v1.3.0/ijava-1.3.0.zip && \
+ unzip ijava-1.3.0.zip && \
  python3 install.py --sys-prefix
 
 
@@ -89,7 +88,8 @@ RUN useradd --create-home nbgadmin && \
 # https://anaconda.org/conda-forge/nbgrader/labels
 # https://nbgrader.readthedocs.io/en/stable/user_guide/installation.html
 
-RUN conda install -c conda-forge nbgrader=0.5.5 && \
+RUN conda update -n base conda && \
+ conda install -c conda-forge nbgrader=0.6.0 && \
  jupyter nbextension disable --sys-prefix create_assignment/main && \
  jupyter nbextension disable --sys-prefix formgrader/main --section=tree && \
  runuser -l  nbgadmin -c '/opt/conda/bin/jupyter nbextension enable --user create_assignment/main' && \
@@ -143,7 +143,7 @@ RUN mkdir -p /srv/nbgrader/exchange && \
  chmod ugo+rw /srv/nbgrader/exchange \
  && \
  echo "c = get_config()\n\
-c.Exchange.course_id = \"default-course\"\n\
+c.CourseDirectory.course_id = \"default-course\"\n\
 c.Exchange.root = '/srv/nbgrader/exchange'\n\
 c.ExecutePreprocessor.timeout = 300\n\
 c.ClearSolutions.code_stub = {\n\
