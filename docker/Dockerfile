@@ -143,7 +143,7 @@ RUN mkdir -p /srv/nbgrader/exchange && \
  chmod ugo+rw /srv/nbgrader/exchange \
  && \
  echo "c = get_config()\n\
-CourseDirectory.course_id = \"default-course\"\n\
+c.CourseDirectory.course_id = \"default-course\"\n\
 c.Exchange.root = '/srv/nbgrader/exchange'\n\
 c.ExecutePreprocessor.timeout = 300\n\
 c.ClearSolutions.code_stub = {\n\
