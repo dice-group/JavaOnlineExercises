@@ -38,17 +38,17 @@ RUN apt-get -y upgrade && \
 
 
 # Install Java
-# - Java 12 JRE (OpenJDK)
-# - Java 12 JDK (OpenJDK)
+# - Java 11 JRE (OpenJDK)
+# - Java 11 JDK (OpenJDK)
 # https://wiki.ubuntuusers.de/Java/Installation/OpenJDK/
 
 RUN apt-get -y install \
- openjdk-12-jre \
- openjdk-12-jdk \
- openjdk-12-demo \
- openjdk-12-doc \
- openjdk-12-jre-headless \
- openjdk-12-source \
+ openjdk-11-jre \
+ openjdk-11-jdk \
+ openjdk-11-demo \
+ openjdk-11-doc \
+ openjdk-11-jre-headless \
+ openjdk-11-source \
  && \
  apt-get purge && \
  apt-get clean && \
