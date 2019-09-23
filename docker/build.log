@@ -1,681 +1,0 @@
-Sending build context to Docker daemon  12.29kB
-Step 1/16 : FROM jupyterhub/jupyterhub:1.0.0
-1.0.0: Pulling from jupyterhub/jupyterhub
-f476d66f5408: Pulling fs layer
-8882c27f669e: Pulling fs layer
-d9af21273955: Pulling fs layer
-f5029279ec12: Pulling fs layer
-d79968914e47: Pulling fs layer
-b89b2017a5e2: Pulling fs layer
-2e3561d48293: Pulling fs layer
-a74daa96e1c9: Pulling fs layer
-eaa39e29fa65: Pulling fs layer
-2e3561d48293: Waiting
-d79968914e47: Waiting
-b89b2017a5e2: Waiting
-a74daa96e1c9: Waiting
-eaa39e29fa65: Waiting
-f5029279ec12: Waiting
-d9af21273955: Verifying Checksum
-d9af21273955: Download complete
-8882c27f669e: Download complete
-f476d66f5408: Verifying Checksum
-f476d66f5408: Download complete
-d79968914e47: Verifying Checksum
-d79968914e47: Download complete
-f5029279ec12: Verifying Checksum
-f5029279ec12: Download complete
-f476d66f5408: Pull complete
-2e3561d48293: Verifying Checksum
-2e3561d48293: Download complete
-8882c27f669e: Pull complete
-d9af21273955: Pull complete
-a74daa96e1c9: Verifying Checksum
-a74daa96e1c9: Download complete
-f5029279ec12: Pull complete
-eaa39e29fa65: Verifying Checksum
-eaa39e29fa65: Download complete
-d79968914e47: Pull complete
-b89b2017a5e2: Verifying Checksum
-b89b2017a5e2: Download complete
-b89b2017a5e2: Pull complete
-2e3561d48293: Pull complete
-a74daa96e1c9: Pull complete
-eaa39e29fa65: Pull complete
-Digest: sha256:2bd3ea9602f61aa719a4f9458c64966c9cd839145cec08f0f1980124595dbd69
-Status: Downloaded newer image for jupyterhub/jupyterhub:1.0.0
- ---> 64d82994fd55
-Step 2/16 : LABEL maintainer="Adrian Wilke <adrian.wilke@upb.REMOVEME.de>"
- ---> Running in ae6bbee7461c
-Removing intermediate container ae6bbee7461c
- ---> b68cc99120f0
-Step 3/16 : RUN apt-get -y update &&  apt-get -y install  apt-utils
- ---> Running in 1613f7cf9eab
-Get:1 http://archive.ubuntu.com/ubuntu bionic InRelease [242 kB]
-Get:2 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
-Get:3 http://archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
-Get:4 http://security.ubuntu.com/ubuntu bionic-security/universe amd64 Packages [769 kB]
-Get:5 http://archive.ubuntu.com/ubuntu bionic-backports InRelease [74.6 kB]
-Get:6 http://archive.ubuntu.com/ubuntu bionic/restricted amd64 Packages [13.5 kB]
-Get:7 http://security.ubuntu.com/ubuntu bionic-security/main amd64 Packages [662 kB]
-Get:8 http://archive.ubuntu.com/ubuntu bionic/multiverse amd64 Packages [186 kB]
-Get:9 http://archive.ubuntu.com/ubuntu bionic/main amd64 Packages [1344 kB]
-Get:10 http://security.ubuntu.com/ubuntu bionic-security/multiverse amd64 Packages [5230 B]
-Get:11 http://security.ubuntu.com/ubuntu bionic-security/restricted amd64 Packages [9585 B]
-Get:12 http://archive.ubuntu.com/ubuntu bionic/universe amd64 Packages [11.3 MB]
-Get:13 http://archive.ubuntu.com/ubuntu bionic-updates/restricted amd64 Packages [20.3 kB]
-Get:14 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 Packages [960 kB]
-Get:15 http://archive.ubuntu.com/ubuntu bionic-updates/universe amd64 Packages [1288 kB]
-Get:16 http://archive.ubuntu.com/ubuntu bionic-updates/multiverse amd64 Packages [8284 B]
-Get:17 http://archive.ubuntu.com/ubuntu bionic-backports/main amd64 Packages [2496 B]
-Get:18 http://archive.ubuntu.com/ubuntu bionic-backports/universe amd64 Packages [4227 B]
-Fetched 17.1 MB in 2s (8125 kB/s)
-Reading package lists...
-Reading package lists...
-Building dependency tree...
-Reading state information...
-The following additional packages will be installed:
-  apt libapt-inst2.0 libapt-pkg5.0
-Suggested packages:
-  apt-doc aptitude | synaptic | wajig dpkg-dev gnupg | gnupg2 | gnupg1
-  powermgmt-base
-The following NEW packages will be installed:
-  apt-utils libapt-inst2.0
-The following packages will be upgraded:
-  apt libapt-pkg5.0
-2 upgraded, 2 newly installed, 0 to remove and 34 not upgraded.
-Need to get 2268 kB of archives.
-After this operation, 1340 kB of additional disk space will be used.
-Get:1 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libapt-pkg5.0 amd64 1.6.12 [806 kB]
-Get:2 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 apt amd64 1.6.12 [1200 kB]
-Get:3 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libapt-inst2.0 amd64 1.6.12 [55.6 kB]
-Get:4 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 apt-utils amd64 1.6.12 [206 kB]
-[91mdebconf: delaying package configuration, since apt-utils is not installed
-[0mFetched 2268 kB in 1s (3425 kB/s)
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7798 files and directories currently installed.)
-Preparing to unpack .../libapt-pkg5.0_1.6.12_amd64.deb ...
-Unpacking libapt-pkg5.0:amd64 (1.6.12) over (1.6.10) ...
-Setting up libapt-pkg5.0:amd64 (1.6.12) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7798 files and directories currently installed.)
-Preparing to unpack .../archives/apt_1.6.12_amd64.deb ...
-Unpacking apt (1.6.12) over (1.6.10) ...
-Setting up apt (1.6.12) ...
-Installing new version of config file /etc/apt/apt.conf.d/01autoremove ...
-Selecting previously unselected package libapt-inst2.0:amd64.
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7804 files and directories currently installed.)
-Preparing to unpack .../libapt-inst2.0_1.6.12_amd64.deb ...
-Unpacking libapt-inst2.0:amd64 (1.6.12) ...
-Selecting previously unselected package apt-utils.
-Preparing to unpack .../apt-utils_1.6.12_amd64.deb ...
-Unpacking apt-utils (1.6.12) ...
-Setting up libapt-inst2.0:amd64 (1.6.12) ...
-Setting up apt-utils (1.6.12) ...
-Processing triggers for libc-bin (2.27-3ubuntu1) ...
-Removing intermediate container 1613f7cf9eab
- ---> 86bf3d6b5e04
-Step 4/16 : RUN apt-get -y upgrade &&  apt-get -y install  nano  zip
- ---> Running in 477e67838b21
-Reading package lists...
-Building dependency tree...
-Reading state information...
-Calculating upgrade...
-The following packages will be upgraded:
-  base-files bash bsdutils bzip2 debconf dpkg fdisk gcc-8-base libblkid1
-  libbz2-1.0 libcurl3-gnutls libdb5.3 libexpat1 libfdisk1 libgcc1 libgnutls30
-  libldap-2.4-2 libldap-common libmount1 libprocps6 libseccomp2 libsmartcols1
-  libsqlite3-0 libssl1.1 libstdc++6 libsystemd0 libudev1 libuuid1 libzstd1
-  mount openssl patch procps util-linux
-34 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
-Need to get 9200 kB of archives.
-After this operation, 660 kB of additional disk space will be used.
-Get:1 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 base-files amd64 10.1ubuntu2.6 [60.1 kB]
-Get:2 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 bash amd64 4.4.18-2ubuntu1.2 [614 kB]
-Get:3 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 bsdutils amd64 1:2.31.1-0.4ubuntu3.4 [60.3 kB]
-Get:4 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 dpkg amd64 1.19.0.5ubuntu2.2 [1136 kB]
-Get:5 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libuuid1 amd64 2.31.1-0.4ubuntu3.4 [20.0 kB]
-Get:6 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libblkid1 amd64 2.31.1-0.4ubuntu3.4 [124 kB]
-Get:7 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libfdisk1 amd64 2.31.1-0.4ubuntu3.4 [164 kB]
-Get:8 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libmount1 amd64 2.31.1-0.4ubuntu3.4 [136 kB]
-Get:9 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libsmartcols1 amd64 2.31.1-0.4ubuntu3.4 [83.7 kB]
-Get:10 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 fdisk amd64 2.31.1-0.4ubuntu3.4 [108 kB]
-Get:11 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 util-linux amd64 2.31.1-0.4ubuntu3.4 [902 kB]
-Get:12 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 debconf all 1.5.66ubuntu1 [124 kB]
-Get:13 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libsystemd0 amd64 237-3ubuntu10.29 [204 kB]
-Get:14 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 mount amd64 2.31.1-0.4ubuntu3.4 [107 kB]
-Get:15 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 gcc-8-base amd64 8.3.0-6ubuntu1~18.04.1 [18.7 kB]
-Get:16 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libstdc++6 amd64 8.3.0-6ubuntu1~18.04.1 [400 kB]
-Get:17 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libgcc1 amd64 1:8.3.0-6ubuntu1~18.04.1 [40.7 kB]
-Get:18 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 bzip2 amd64 1.0.6-8.1ubuntu0.2 [33.9 kB]
-Get:19 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libbz2-1.0 amd64 1.0.6-8.1ubuntu0.2 [31.2 kB]
-Get:20 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libdb5.3 amd64 5.3.28-13.1ubuntu1.1 [672 kB]
-Get:21 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libudev1 amd64 237-3ubuntu10.29 [53.8 kB]
-Get:22 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libzstd1 amd64 1.3.3+dfsg-2ubuntu1.1 [189 kB]
-Get:23 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libgnutls30 amd64 3.5.18-1ubuntu1.1 [645 kB]
-Get:24 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libseccomp2 amd64 2.4.1-0ubuntu0.18.04.2 [39.1 kB]
-Get:25 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libprocps6 amd64 2:3.3.12-3ubuntu1.2 [31.8 kB]
-Get:26 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 procps amd64 2:3.3.12-3ubuntu1.2 [225 kB]
-Get:27 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libexpat1 amd64 2.2.5-3ubuntu0.2 [80.5 kB]
-Get:28 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libsqlite3-0 amd64 3.22.0-1ubuntu0.1 [497 kB]
-Get:29 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libssl1.1 amd64 1.1.1-1ubuntu2.1~18.04.4 [1300 kB]
-Get:30 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 openssl amd64 1.1.1-1ubuntu2.1~18.04.4 [613 kB]
-Get:31 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libldap-common all 2.4.45+dfsg-1ubuntu1.4 [16.9 kB]
-Get:32 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libldap-2.4-2 amd64 2.4.45+dfsg-1ubuntu1.4 [155 kB]
-Get:33 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libcurl3-gnutls amd64 7.58.0-2ubuntu3.8 [213 kB]
-Get:34 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 patch amd64 2.7.6-2ubuntu1.1 [102 kB]
-Preconfiguring packages ...
-Fetched 9200 kB in 5s (1854 kB/s)
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7891 files and directories currently installed.)
-Preparing to unpack .../base-files_10.1ubuntu2.6_amd64.deb ...
-Unpacking base-files (10.1ubuntu2.6) over (10.1ubuntu2.4) ...
-Setting up base-files (10.1ubuntu2.6) ...
-Installing new version of config file /etc/issue ...
-Installing new version of config file /etc/issue.net ...
-Installing new version of config file /etc/lsb-release ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7891 files and directories currently installed.)
-Preparing to unpack .../bash_4.4.18-2ubuntu1.2_amd64.deb ...
-Unpacking bash (4.4.18-2ubuntu1.2) over (4.4.18-2ubuntu1) ...
-Setting up bash (4.4.18-2ubuntu1.2) ...
-update-alternatives: error: alternative path /usr/share/man/man7/bash-builtins.7.gz doesn't exist
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7891 files and directories currently installed.)
-Preparing to unpack .../bsdutils_1%3a2.31.1-0.4ubuntu3.4_amd64.deb ...
-Unpacking bsdutils (1:2.31.1-0.4ubuntu3.4) over (1:2.31.1-0.4ubuntu3.3) ...
-Setting up bsdutils (1:2.31.1-0.4ubuntu3.4) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7891 files and directories currently installed.)
-Preparing to unpack .../dpkg_1.19.0.5ubuntu2.2_amd64.deb ...
-Unpacking dpkg (1.19.0.5ubuntu2.2) over (1.19.0.5ubuntu2.1) ...
-Setting up dpkg (1.19.0.5ubuntu2.2) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7891 files and directories currently installed.)
-Preparing to unpack .../libuuid1_2.31.1-0.4ubuntu3.4_amd64.deb ...
-Unpacking libuuid1:amd64 (2.31.1-0.4ubuntu3.4) over (2.31.1-0.4ubuntu3.3) ...
-Setting up libuuid1:amd64 (2.31.1-0.4ubuntu3.4) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7891 files and directories currently installed.)
-Preparing to unpack .../libblkid1_2.31.1-0.4ubuntu3.4_amd64.deb ...
-Unpacking libblkid1:amd64 (2.31.1-0.4ubuntu3.4) over (2.31.1-0.4ubuntu3.3) ...
-Setting up libblkid1:amd64 (2.31.1-0.4ubuntu3.4) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7891 files and directories currently installed.)
-Preparing to unpack .../libfdisk1_2.31.1-0.4ubuntu3.4_amd64.deb ...
-Unpacking libfdisk1:amd64 (2.31.1-0.4ubuntu3.4) over (2.31.1-0.4ubuntu3.3) ...
-Setting up libfdisk1:amd64 (2.31.1-0.4ubuntu3.4) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7891 files and directories currently installed.)
-Preparing to unpack .../libmount1_2.31.1-0.4ubuntu3.4_amd64.deb ...
-Unpacking libmount1:amd64 (2.31.1-0.4ubuntu3.4) over (2.31.1-0.4ubuntu3.3) ...
-Setting up libmount1:amd64 (2.31.1-0.4ubuntu3.4) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7891 files and directories currently installed.)
-Preparing to unpack .../libsmartcols1_2.31.1-0.4ubuntu3.4_amd64.deb ...
-Unpacking libsmartcols1:amd64 (2.31.1-0.4ubuntu3.4) over (2.31.1-0.4ubuntu3.3) ...
-Setting up libsmartcols1:amd64 (2.31.1-0.4ubuntu3.4) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7891 files and directories currently installed.)
-Preparing to unpack .../fdisk_2.31.1-0.4ubuntu3.4_amd64.deb ...
-Unpacking fdisk (2.31.1-0.4ubuntu3.4) over (2.31.1-0.4ubuntu3.3) ...
-Setting up fdisk (2.31.1-0.4ubuntu3.4) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7891 files and directories currently installed.)
-Preparing to unpack .../util-linux_2.31.1-0.4ubuntu3.4_amd64.deb ...
-Unpacking util-linux (2.31.1-0.4ubuntu3.4) over (2.31.1-0.4ubuntu3.3) ...
-Setting up util-linux (2.31.1-0.4ubuntu3.4) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7891 files and directories currently installed.)
-Preparing to unpack .../debconf_1.5.66ubuntu1_all.deb ...
-Unpacking debconf (1.5.66ubuntu1) over (1.5.66) ...
-Setting up debconf (1.5.66ubuntu1) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7891 files and directories currently installed.)
-Preparing to unpack .../libsystemd0_237-3ubuntu10.29_amd64.deb ...
-Unpacking libsystemd0:amd64 (237-3ubuntu10.29) over (237-3ubuntu10.21) ...
-Setting up libsystemd0:amd64 (237-3ubuntu10.29) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7891 files and directories currently installed.)
-Preparing to unpack .../mount_2.31.1-0.4ubuntu3.4_amd64.deb ...
-Unpacking mount (2.31.1-0.4ubuntu3.4) over (2.31.1-0.4ubuntu3.3) ...
-Preparing to unpack .../gcc-8-base_8.3.0-6ubuntu1~18.04.1_amd64.deb ...
-Unpacking gcc-8-base:amd64 (8.3.0-6ubuntu1~18.04.1) over (8.3.0-6ubuntu1~18.04) ...
-Setting up gcc-8-base:amd64 (8.3.0-6ubuntu1~18.04.1) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7891 files and directories currently installed.)
-Preparing to unpack .../libstdc++6_8.3.0-6ubuntu1~18.04.1_amd64.deb ...
-Unpacking libstdc++6:amd64 (8.3.0-6ubuntu1~18.04.1) over (8.3.0-6ubuntu1~18.04) ...
-Setting up libstdc++6:amd64 (8.3.0-6ubuntu1~18.04.1) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7891 files and directories currently installed.)
-Preparing to unpack .../libgcc1_1%3a8.3.0-6ubuntu1~18.04.1_amd64.deb ...
-Unpacking libgcc1:amd64 (1:8.3.0-6ubuntu1~18.04.1) over (1:8.3.0-6ubuntu1~18.04) ...
-Setting up libgcc1:amd64 (1:8.3.0-6ubuntu1~18.04.1) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7891 files and directories currently installed.)
-Preparing to unpack .../bzip2_1.0.6-8.1ubuntu0.2_amd64.deb ...
-Unpacking bzip2 (1.0.6-8.1ubuntu0.2) over (1.0.6-8.1) ...
-Preparing to unpack .../libbz2-1.0_1.0.6-8.1ubuntu0.2_amd64.deb ...
-Unpacking libbz2-1.0:amd64 (1.0.6-8.1ubuntu0.2) over (1.0.6-8.1) ...
-Setting up libbz2-1.0:amd64 (1.0.6-8.1ubuntu0.2) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7891 files and directories currently installed.)
-Preparing to unpack .../libdb5.3_5.3.28-13.1ubuntu1.1_amd64.deb ...
-Unpacking libdb5.3:amd64 (5.3.28-13.1ubuntu1.1) over (5.3.28-13.1ubuntu1) ...
-Setting up libdb5.3:amd64 (5.3.28-13.1ubuntu1.1) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7891 files and directories currently installed.)
-Preparing to unpack .../libudev1_237-3ubuntu10.29_amd64.deb ...
-Unpacking libudev1:amd64 (237-3ubuntu10.29) over (237-3ubuntu10.21) ...
-Setting up libudev1:amd64 (237-3ubuntu10.29) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7891 files and directories currently installed.)
-Preparing to unpack .../libzstd1_1.3.3+dfsg-2ubuntu1.1_amd64.deb ...
-Unpacking libzstd1:amd64 (1.3.3+dfsg-2ubuntu1.1) over (1.3.3+dfsg-2ubuntu1) ...
-Setting up libzstd1:amd64 (1.3.3+dfsg-2ubuntu1.1) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7891 files and directories currently installed.)
-Preparing to unpack .../libgnutls30_3.5.18-1ubuntu1.1_amd64.deb ...
-Unpacking libgnutls30:amd64 (3.5.18-1ubuntu1.1) over (3.5.18-1ubuntu1) ...
-Setting up libgnutls30:amd64 (3.5.18-1ubuntu1.1) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7891 files and directories currently installed.)
-Preparing to unpack .../libseccomp2_2.4.1-0ubuntu0.18.04.2_amd64.deb ...
-Unpacking libseccomp2:amd64 (2.4.1-0ubuntu0.18.04.2) over (2.3.1-2.1ubuntu4.1) ...
-Setting up libseccomp2:amd64 (2.4.1-0ubuntu0.18.04.2) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7891 files and directories currently installed.)
-Preparing to unpack .../0-libprocps6_2%3a3.3.12-3ubuntu1.2_amd64.deb ...
-Unpacking libprocps6:amd64 (2:3.3.12-3ubuntu1.2) over (2:3.3.12-3ubuntu1.1) ...
-Preparing to unpack .../1-procps_2%3a3.3.12-3ubuntu1.2_amd64.deb ...
-Unpacking procps (2:3.3.12-3ubuntu1.2) over (2:3.3.12-3ubuntu1.1) ...
-Preparing to unpack .../2-libexpat1_2.2.5-3ubuntu0.2_amd64.deb ...
-Unpacking libexpat1:amd64 (2.2.5-3ubuntu0.2) over (2.2.5-3) ...
-Preparing to unpack .../3-libsqlite3-0_3.22.0-1ubuntu0.1_amd64.deb ...
-Unpacking libsqlite3-0:amd64 (3.22.0-1ubuntu0.1) over (3.22.0-1) ...
-Preparing to unpack .../4-libssl1.1_1.1.1-1ubuntu2.1~18.04.4_amd64.deb ...
-Unpacking libssl1.1:amd64 (1.1.1-1ubuntu2.1~18.04.4) over (1.1.0g-2ubuntu4.3) ...
-Preparing to unpack .../5-openssl_1.1.1-1ubuntu2.1~18.04.4_amd64.deb ...
-Unpacking openssl (1.1.1-1ubuntu2.1~18.04.4) over (1.1.0g-2ubuntu4.3) ...
-Preparing to unpack .../6-libldap-common_2.4.45+dfsg-1ubuntu1.4_all.deb ...
-Unpacking libldap-common (2.4.45+dfsg-1ubuntu1.4) over (2.4.45+dfsg-1ubuntu1.2) ...
-Preparing to unpack .../7-libldap-2.4-2_2.4.45+dfsg-1ubuntu1.4_amd64.deb ...
-Unpacking libldap-2.4-2:amd64 (2.4.45+dfsg-1ubuntu1.4) over (2.4.45+dfsg-1ubuntu1.2) ...
-Preparing to unpack .../8-libcurl3-gnutls_7.58.0-2ubuntu3.8_amd64.deb ...
-Unpacking libcurl3-gnutls:amd64 (7.58.0-2ubuntu3.8) over (7.58.0-2ubuntu3.6) ...
-Preparing to unpack .../9-patch_2.7.6-2ubuntu1.1_amd64.deb ...
-Unpacking patch (2.7.6-2ubuntu1.1) over (2.7.6-2ubuntu1) ...
-Setting up libexpat1:amd64 (2.2.5-3ubuntu0.2) ...
-Setting up libldap-common (2.4.45+dfsg-1ubuntu1.4) ...
-Setting up mount (2.31.1-0.4ubuntu3.4) ...
-Setting up libprocps6:amd64 (2:3.3.12-3ubuntu1.2) ...
-Setting up bzip2 (1.0.6-8.1ubuntu0.2) ...
-Setting up procps (2:3.3.12-3ubuntu1.2) ...
-Setting up patch (2.7.6-2ubuntu1.1) ...
-Setting up libldap-2.4-2:amd64 (2.4.45+dfsg-1ubuntu1.4) ...
-Setting up libssl1.1:amd64 (1.1.1-1ubuntu2.1~18.04.4) ...
-Checking for services that may need to be restarted...done.
-Checking for services that may need to be restarted...done.
-Setting up openssl (1.1.1-1ubuntu2.1~18.04.4) ...
-Installing new version of config file /etc/ssl/openssl.cnf ...
-Setting up libsqlite3-0:amd64 (3.22.0-1ubuntu0.1) ...
-Setting up libcurl3-gnutls:amd64 (7.58.0-2ubuntu3.8) ...
-Processing triggers for libc-bin (2.27-3ubuntu1) ...
-Reading package lists...
-Building dependency tree...
-Reading state information...
-The following additional packages will be installed:
-  unzip
-Suggested packages:
-  spell
-The following NEW packages will be installed:
-  nano unzip zip
-0 upgraded, 3 newly installed, 0 to remove and 0 not upgraded.
-Need to get 566 kB of archives.
-After this operation, 1974 kB of additional disk space will be used.
-Get:1 http://archive.ubuntu.com/ubuntu bionic/main amd64 nano amd64 2.9.3-2 [231 kB]
-Get:2 http://archive.ubuntu.com/ubuntu bionic/main amd64 unzip amd64 6.0-21ubuntu1 [167 kB]
-Get:3 http://archive.ubuntu.com/ubuntu bionic/main amd64 zip amd64 3.0-11build1 [167 kB]
-Fetched 566 kB in 0s (1186 kB/s)
-Selecting previously unselected package nano.
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7899 files and directories currently installed.)
-Preparing to unpack .../nano_2.9.3-2_amd64.deb ...
-Unpacking nano (2.9.3-2) ...
-Selecting previously unselected package unzip.
-Preparing to unpack .../unzip_6.0-21ubuntu1_amd64.deb ...
-Unpacking unzip (6.0-21ubuntu1) ...
-Selecting previously unselected package zip.
-Preparing to unpack .../zip_3.0-11build1_amd64.deb ...
-Unpacking zip (3.0-11build1) ...
-Setting up unzip (6.0-21ubuntu1) ...
-Setting up zip (3.0-11build1) ...
-Setting up nano (2.9.3-2) ...
-update-alternatives: using /bin/nano to provide /usr/bin/editor (editor) in auto mode
-update-alternatives: warning: skip creation of /usr/share/man/man1/editor.1.gz because associated file /usr/share/man/man1/nano.1.gz (of link group editor) doesn't exist
-update-alternatives: using /bin/nano to provide /usr/bin/pico (pico) in auto mode
-update-alternatives: warning: skip creation of /usr/share/man/man1/pico.1.gz because associated file /usr/share/man/man1/nano.1.gz (of link group pico) doesn't exist
-Removing intermediate container 477e67838b21
- ---> 8f60107adeea
-Step 5/16 : RUN apt-get -y install  openjdk-12-jre  openjdk-12-jdk  openjdk-12-demo  openjdk-12-doc  openjdk-12-jre-headless  openjdk-12-source  &&  apt-get purge &&  apt-get clean &&  rm -rf /var/lib/apt/lists/*
- ---> Running in d706a3c5b88e
-Reading package lists...
-Building dependency tree...
-Reading state information...
-[91mE: Unable to locate package openjdk-12-jre
-E: Unable to locate package openjdk-12-jdk
-E: Unable to locate package openjdk-12-demo
-E: Unable to locate package openjdk-12-doc
-E: Unable to locate package openjdk-12-jre-headless
-E: Unable to locate package openjdk-12-source
-[0mSending build context to Docker daemon  48.64kB
-Step 1/16 : FROM jupyterhub/jupyterhub:1.0.0
- ---> 64d82994fd55
-Step 2/16 : LABEL maintainer="Adrian Wilke <adrian.wilke@upb.REMOVEME.de>"
- ---> Using cache
- ---> b68cc99120f0
-Step 3/16 : RUN apt-get -y update &&  apt-get -y install  apt-utils
- ---> Using cache
- ---> 86bf3d6b5e04
-Step 4/16 : RUN apt-get -y upgrade &&  apt-get -y install  nano  zip
- ---> Using cache
- ---> 8f60107adeea
-Step 5/16 : RUN apt-get -y install  openjdk-11-jre  openjdk-11-jdk  openjdk-11-demo  openjdk-11-doc  openjdk-11-jre-headless  openjdk-11-source  &&  apt-get purge &&  apt-get clean &&  rm -rf /var/lib/apt/lists/*
- ---> Running in 168503cc23de
-Reading package lists...
-Building dependency tree...
-Reading state information...
-The following additional packages will be installed:
-  at-spi2-core ca-certificates-java dbus fontconfig-config fonts-dejavu-core
-  fonts-dejavu-extra java-common libapparmor1 libasound2 libasound2-data
-  libatk-bridge2.0-0 libatk-wrapper-java libatk-wrapper-java-jni libatk1.0-0
-  libatk1.0-data libatspi2.0-0 libavahi-client3 libavahi-common-data
-  libavahi-common3 libcups2 libdbus-1-3 libdrm-amdgpu1 libdrm-common
-  libdrm-intel1 libdrm-nouveau2 libdrm-radeon1 libdrm2 libelf1 libfontconfig1
-  libfontenc1 libfreetype6 libgif7 libgl1 libgl1-mesa-dri libglapi-mesa
-  libglib2.0-0 libglib2.0-data libglvnd0 libglx-mesa0 libglx0 libice-dev
-  libice6 libicu60 libjpeg-turbo8 libjpeg8 liblcms2-2 libllvm8 libnspr4
-  libnss3 libpciaccess0 libpcsclite1 libpng16-16 libpthread-stubs0-dev
-  libsensors4 libsm-dev libsm6 libx11-dev libx11-doc libx11-xcb1 libxau-dev
-  libxaw7 libxcb-dri2-0 libxcb-dri3-0 libxcb-glx0 libxcb-present0
-  libxcb-shape0 libxcb-sync1 libxcb1-dev libxcomposite1 libxdamage1
-  libxdmcp-dev libxfixes3 libxft2 libxi6 libxinerama1 libxml2 libxmu6 libxpm4
-  libxrandr2 libxrender1 libxshmfence1 libxt-dev libxt6 libxtst6 libxv1
-  libxxf86dga1 libxxf86vm1 openjdk-11-jdk-headless shared-mime-info ucf
-  x11-common x11-utils x11proto-core-dev x11proto-dev xdg-user-dirs
-  xorg-sgml-doctools xtrans-dev
-Suggested packages:
-  default-dbus-session-bus | dbus-session-bus default-jre libasound2-plugins
-  alsa-utils cups-common libice-doc liblcms2-utils pciutils pcscd lm-sensors
-  libsm-doc libxcb-doc libxt-doc visualvm libnss-mdns fonts-ipafont-gothic
-  fonts-ipafont-mincho fonts-wqy-microhei | fonts-wqy-zenhei fonts-indic
-  mesa-utils
-The following NEW packages will be installed:
-  at-spi2-core ca-certificates-java dbus fontconfig-config fonts-dejavu-core
-  fonts-dejavu-extra java-common libapparmor1 libasound2 libasound2-data
-  libatk-bridge2.0-0 libatk-wrapper-java libatk-wrapper-java-jni libatk1.0-0
-  libatk1.0-data libatspi2.0-0 libavahi-client3 libavahi-common-data
-  libavahi-common3 libcups2 libdbus-1-3 libdrm-amdgpu1 libdrm-common
-  libdrm-intel1 libdrm-nouveau2 libdrm-radeon1 libdrm2 libelf1 libfontconfig1
-  libfontenc1 libfreetype6 libgif7 libgl1 libgl1-mesa-dri libglapi-mesa
-  libglib2.0-0 libglib2.0-data libglvnd0 libglx-mesa0 libglx0 libice-dev
-  libice6 libicu60 libjpeg-turbo8 libjpeg8 liblcms2-2 libllvm8 libnspr4
-  libnss3 libpciaccess0 libpcsclite1 libpng16-16 libpthread-stubs0-dev
-  libsensors4 libsm-dev libsm6 libx11-dev libx11-doc libx11-xcb1 libxau-dev
-  libxaw7 libxcb-dri2-0 libxcb-dri3-0 libxcb-glx0 libxcb-present0
-  libxcb-shape0 libxcb-sync1 libxcb1-dev libxcomposite1 libxdamage1
-  libxdmcp-dev libxfixes3 libxft2 libxi6 libxinerama1 libxml2 libxmu6 libxpm4
-  libxrandr2 libxrender1 libxshmfence1 libxt-dev libxt6 libxtst6 libxv1
-  libxxf86dga1 libxxf86vm1 openjdk-11-demo openjdk-11-doc openjdk-11-jdk
-  openjdk-11-jdk-headless openjdk-11-jre openjdk-11-jre-headless
-  openjdk-11-source shared-mime-info ucf x11-common x11-utils
-  x11proto-core-dev x11proto-dev xdg-user-dirs xorg-sgml-doctools xtrans-dev
-0 upgraded, 103 newly installed, 0 to remove and 0 not upgraded.
-Need to get 343 MB of archives.
-After this operation, 1027 MB of additional disk space will be used.
-Get:1 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libjpeg-turbo8 amd64 1.5.2-0ubuntu5.18.04.1 [110 kB]
-Get:2 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 x11-common all 1:7.7+19ubuntu7.1 [22.5 kB]
-Get:3 http://archive.ubuntu.com/ubuntu bionic/main amd64 libice6 amd64 2:1.0.9-2 [40.2 kB]
-Get:4 http://archive.ubuntu.com/ubuntu bionic/main amd64 libsm6 amd64 2:1.2.2-1 [15.8 kB]
-Get:5 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libpng16-16 amd64 1.6.34-1ubuntu0.18.04.2 [176 kB]
-Get:6 http://archive.ubuntu.com/ubuntu bionic/main amd64 libfreetype6 amd64 2.8.1-2ubuntu2 [335 kB]
-Get:7 http://archive.ubuntu.com/ubuntu bionic/main amd64 ucf all 3.0038 [50.5 kB]
-Get:8 http://archive.ubuntu.com/ubuntu bionic/main amd64 fonts-dejavu-core all 2.37-1 [1041 kB]
-Get:9 http://archive.ubuntu.com/ubuntu bionic/main amd64 fontconfig-config all 2.12.6-0ubuntu2 [55.8 kB]
-Get:10 http://archive.ubuntu.com/ubuntu bionic/main amd64 libfontconfig1 amd64 2.12.6-0ubuntu2 [137 kB]
-Get:11 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxrender1 amd64 1:0.9.10-1 [18.7 kB]
-Get:12 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxft2 amd64 2.3.2-1 [36.1 kB]
-Get:13 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxinerama1 amd64 2:1.1.3-1 [7908 B]
-Get:14 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxxf86dga1 amd64 2:1.1.4-1 [13.7 kB]
-Get:15 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxxf86vm1 amd64 1:1.1.4-1 [10.6 kB]
-Get:16 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libapparmor1 amd64 2.12-4ubuntu5.1 [31.3 kB]
-Get:17 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libdbus-1-3 amd64 1.12.2-1ubuntu1.1 [175 kB]
-Get:18 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 dbus amd64 1.12.2-1ubuntu1.1 [150 kB]
-Get:19 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libelf1 amd64 0.170-0.4ubuntu0.1 [44.8 kB]
-Get:20 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libglib2.0-0 amd64 2.56.4-0ubuntu0.18.04.4 [1169 kB]
-Get:21 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libglib2.0-data all 2.56.4-0ubuntu0.18.04.4 [4496 B]
-Get:22 http://archive.ubuntu.com/ubuntu bionic/main amd64 libicu60 amd64 60.2-3ubuntu3 [8054 kB]
-Get:23 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxml2 amd64 2.9.4+dfsg1-6.1ubuntu1.2 [663 kB]
-Get:24 http://archive.ubuntu.com/ubuntu bionic/main amd64 shared-mime-info amd64 1.9-2 [426 kB]
-Get:25 http://archive.ubuntu.com/ubuntu bionic/main amd64 xdg-user-dirs amd64 0.17-1ubuntu1 [48.0 kB]
-Get:26 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libdrm-common all 2.4.97-1ubuntu1~18.04.1 [5216 B]
-Get:27 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libdrm2 amd64 2.4.97-1ubuntu1~18.04.1 [31.3 kB]
-Get:28 http://archive.ubuntu.com/ubuntu bionic/main amd64 libatspi2.0-0 amd64 2.28.0-1 [59.6 kB]
-Get:29 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxtst6 amd64 2:1.2.3-1 [12.8 kB]
-Get:30 http://archive.ubuntu.com/ubuntu bionic/main amd64 at-spi2-core amd64 2.28.0-1 [47.9 kB]
-Get:31 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 java-common all 0.68ubuntu1~18.04.1 [14.5 kB]
-Get:32 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libavahi-common-data amd64 0.7-3.1ubuntu1.2 [22.1 kB]
-Get:33 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libavahi-common3 amd64 0.7-3.1ubuntu1.2 [21.6 kB]
-Get:34 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libavahi-client3 amd64 0.7-3.1ubuntu1.2 [25.2 kB]
-Get:35 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libcups2 amd64 2.2.7-1ubuntu2.7 [211 kB]
-Get:36 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 liblcms2-2 amd64 2.9-1ubuntu0.1 [139 kB]
-Get:37 http://archive.ubuntu.com/ubuntu bionic/main amd64 libjpeg8 amd64 8c-2ubuntu8 [2194 B]
-Get:38 http://archive.ubuntu.com/ubuntu bionic/main amd64 libnspr4 amd64 2:4.18-1ubuntu1 [112 kB]
-Get:39 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libnss3 amd64 2:3.35-2ubuntu2.3 [1136 kB]
-Get:40 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libasound2-data all 1.1.3-5ubuntu0.2 [36.5 kB]
-Get:41 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libasound2 amd64 1.1.3-5ubuntu0.2 [359 kB]
-Get:42 http://archive.ubuntu.com/ubuntu bionic/main amd64 libpcsclite1 amd64 1.8.23-1 [21.3 kB]
-Get:43 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxi6 amd64 2:1.7.9-1 [29.2 kB]
-Get:44 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 openjdk-11-jre-headless amd64 11.0.4+11-1ubuntu2~18.04.3 [37.4 MB]
-Get:45 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 ca-certificates-java all 20180516ubuntu1~18.04.1 [12.2 kB]
-Get:46 http://archive.ubuntu.com/ubuntu bionic/main amd64 fonts-dejavu-extra all 2.37-1 [1953 kB]
-Get:47 http://archive.ubuntu.com/ubuntu bionic/main amd64 libatk1.0-data all 2.28.1-1 [2992 B]
-Get:48 http://archive.ubuntu.com/ubuntu bionic/main amd64 libatk1.0-0 amd64 2.28.1-1 [43.9 kB]
-Get:49 http://archive.ubuntu.com/ubuntu bionic/main amd64 libatk-bridge2.0-0 amd64 2.26.2-1 [57.3 kB]
-Get:50 http://archive.ubuntu.com/ubuntu bionic/main amd64 libfontenc1 amd64 1:1.1.3-1 [13.9 kB]
-Get:51 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libglvnd0 amd64 1.0.0-2ubuntu2.3 [47.0 kB]
-Get:52 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libglapi-mesa amd64 19.0.8-0ubuntu0~18.04.2 [25.2 kB]
-Get:53 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libx11-xcb1 amd64 2:1.6.4-3ubuntu0.2 [9376 B]
-Get:54 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxcb-dri2-0 amd64 1.13-2~ubuntu18.04 [6920 B]
-Get:55 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxcb-dri3-0 amd64 1.13-2~ubuntu18.04 [6568 B]
-Get:56 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxcb-glx0 amd64 1.13-2~ubuntu18.04 [22.1 kB]
-Get:57 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxcb-present0 amd64 1.13-2~ubuntu18.04 [5552 B]
-Get:58 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxcb-sync1 amd64 1.13-2~ubuntu18.04 [8808 B]
-Get:59 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxdamage1 amd64 1:1.1.4-3 [6934 B]
-Get:60 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxfixes3 amd64 1:5.0.3-1 [10.8 kB]
-Get:61 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxshmfence1 amd64 1.3-1 [5028 B]
-Get:62 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libdrm-amdgpu1 amd64 2.4.97-1ubuntu1~18.04.1 [17.7 kB]
-Get:63 http://archive.ubuntu.com/ubuntu bionic/main amd64 libpciaccess0 amd64 0.14-1 [17.9 kB]
-Get:64 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libdrm-intel1 amd64 2.4.97-1ubuntu1~18.04.1 [59.9 kB]
-Get:65 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libdrm-nouveau2 amd64 2.4.97-1ubuntu1~18.04.1 [16.5 kB]
-Get:66 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libdrm-radeon1 amd64 2.4.97-1ubuntu1~18.04.1 [21.7 kB]
-Get:67 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libllvm8 amd64 1:8-3~ubuntu18.04.1 [13.6 MB]
-Get:68 http://archive.ubuntu.com/ubuntu bionic/main amd64 libsensors4 amd64 1:3.4.0-4 [28.8 kB]
-Get:69 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libgl1-mesa-dri amd64 19.0.8-0ubuntu0~18.04.2 [6810 kB]
-Get:70 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libglx-mesa0 amd64 19.0.8-0ubuntu0~18.04.2 [138 kB]
-Get:71 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libglx0 amd64 1.0.0-2ubuntu2.3 [28.1 kB]
-Get:72 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libgl1 amd64 1.0.0-2ubuntu2.3 [86.2 kB]
-Get:73 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxt6 amd64 1:1.1.5-1 [160 kB]
-Get:74 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxmu6 amd64 2:1.1.2-2 [46.0 kB]
-Get:75 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxpm4 amd64 1:3.5.12-1 [34.0 kB]
-Get:76 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxaw7 amd64 2:1.0.13-1 [173 kB]
-Get:77 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxcb-shape0 amd64 1.13-2~ubuntu18.04 [5972 B]
-Get:78 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxcomposite1 amd64 1:0.4.4-2 [6988 B]
-Get:79 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxrandr2 amd64 2:1.5.1-1 [18.1 kB]
-Get:80 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxv1 amd64 2:1.0.11-1 [10.7 kB]
-Get:81 http://archive.ubuntu.com/ubuntu bionic/main amd64 x11-utils amd64 7.7+3build1 [196 kB]
-Get:82 http://archive.ubuntu.com/ubuntu bionic/main amd64 libatk-wrapper-java all 0.33.3-20ubuntu0.1 [34.7 kB]
-Get:83 http://archive.ubuntu.com/ubuntu bionic/main amd64 libatk-wrapper-java-jni amd64 0.33.3-20ubuntu0.1 [28.3 kB]
-Get:84 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libgif7 amd64 5.1.4-2ubuntu0.1 [30.9 kB]
-Get:85 http://archive.ubuntu.com/ubuntu bionic/main amd64 xorg-sgml-doctools all 1:1.11-1 [12.9 kB]
-Get:86 http://archive.ubuntu.com/ubuntu bionic/main amd64 x11proto-dev all 2018.4-4 [251 kB]
-Get:87 http://archive.ubuntu.com/ubuntu bionic/main amd64 x11proto-core-dev all 2018.4-4 [2620 B]
-Get:88 http://archive.ubuntu.com/ubuntu bionic/main amd64 libice-dev amd64 2:1.0.9-2 [46.8 kB]
-Get:89 http://archive.ubuntu.com/ubuntu bionic/main amd64 libpthread-stubs0-dev amd64 0.3-4 [4068 B]
-Get:90 http://archive.ubuntu.com/ubuntu bionic/main amd64 libsm-dev amd64 2:1.2.2-1 [16.2 kB]
-Get:91 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxau-dev amd64 1:1.0.8-1 [11.1 kB]
-Get:92 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxdmcp-dev amd64 1:1.1.2-3 [25.1 kB]
-Get:93 http://archive.ubuntu.com/ubuntu bionic/main amd64 xtrans-dev all 1.3.5-1 [70.5 kB]
-Get:94 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxcb1-dev amd64 1.13-2~ubuntu18.04 [80.0 kB]
-Get:95 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libx11-dev amd64 2:1.6.4-3ubuntu0.2 [640 kB]
-Get:96 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libx11-doc all 2:1.6.4-3ubuntu0.2 [2065 kB]
-Get:97 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxt-dev amd64 1:1.1.5-1 [395 kB]
-Get:98 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 openjdk-11-jre amd64 11.0.4+11-1ubuntu2~18.04.3 [34.4 kB]
-Get:99 http://archive.ubuntu.com/ubuntu bionic-updates/universe amd64 openjdk-11-demo amd64 11.0.4+11-1ubuntu2~18.04.3 [4109 kB]
-Get:100 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 openjdk-11-doc all 11.0.4+11-1ubuntu2~18.04.3 [13.4 MB]
-Get:101 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 openjdk-11-jdk-headless amd64 11.0.4+11-1ubuntu2~18.04.3 [191 MB]
-Get:102 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 openjdk-11-jdk amd64 11.0.4+11-1ubuntu2~18.04.3 [2173 kB]
-Get:103 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 openjdk-11-source all 11.0.4+11-1ubuntu2~18.04.3 [51.8 MB]
-Preconfiguring packages ...
-Fetched 343 MB in 16s (21.4 MB/s)
-Selecting previously unselected package libjpeg-turbo8:amd64.
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7998 files and directories currently installed.)
-Preparing to unpack .../000-libjpeg-turbo8_1.5.2-0ubuntu5.18.04.1_amd64.deb ...
-Unpacking libjpeg-turbo8:amd64 (1.5.2-0ubuntu5.18.04.1) ...
-Selecting previously unselected package x11-common.
-Preparing to unpack .../001-x11-common_1%3a7.7+19ubuntu7.1_all.deb ...
-dpkg-query: no packages found matching nux-tools
-Unpacking x11-common (1:7.7+19ubuntu7.1) ...
-Selecting previously unselected package libice6:amd64.
-Preparing to unpack .../002-libice6_2%3a1.0.9-2_amd64.deb ...
-Unpacking libice6:amd64 (2:1.0.9-2) ...
-Selecting previously unselected package libsm6:amd64.
-Preparing to unpack .../003-libsm6_2%3a1.2.2-1_amd64.deb ...
-Unpacking libsm6:amd64 (2:1.2.2-1) ...
-Selecting previously unselected package libpng16-16:amd64.
-Preparing to unpack .../004-libpng16-16_1.6.34-1ubuntu0.18.04.2_amd64.deb ...
-Unpacking libpng16-16:amd64 (1.6.34-1ubuntu0.18.04.2) ...
-Selecting previously unselected package libfreetype6:amd64.
-Preparing to unpack .../005-libfreetype6_2.8.1-2ubuntu2_amd64.deb ...
-Unpacking libfreetype6:amd64 (2.8.1-2ubuntu2) ...
-Selecting previously unselected package ucf.
-Preparing to unpack .../006-ucf_3.0038_all.deb ...
-Moving old data out of the way
-Unpacking ucf (3.0038) ...
-Selecting previously unselected package fonts-dejavu-core.
-Preparing to unpack .../007-fonts-dejavu-core_2.37-1_all.deb ...
-Unpacking fonts-dejavu-core (2.37-1) ...
-Selecting previously unselected package fontconfig-config.
-Preparing to unpack .../008-fontconfig-config_2.12.6-0ubuntu2_all.deb ...
-Unpacking fontconfig-config (2.12.6-0ubuntu2) ...
-Selecting previously unselected package libfontconfig1:amd64.
-Preparing to unpack .../009-libfontconfig1_2.12.6-0ubuntu2_amd64.deb ...
-Unpacking libfontconfig1:amd64 (2.12.6-0ubuntu2) ...
-Selecting previously unselected package libxrender1:amd64.
-Preparing to unpack .../010-libxrender1_1%3a0.9.10-1_amd64.deb ...
-Unpacking libxrender1:amd64 (1:0.9.10-1) ...
-Selecting previously unselected package libxft2:amd64.
-Preparing to unpack .../011-libxft2_2.3.2-1_amd64.deb ...
-Unpacking libxft2:amd64 (2.3.2-1) ...
-Selecting previously unselected package libxinerama1:amd64.
-Preparing to unpack .../012-libxinerama1_2%3a1.1.3-1_amd64.deb ...
-Unpacking libxinerama1:amd64 (2:1.1.3-1) ...
-Selecting previously unselected package libxxf86dga1:amd64.
-Preparing to unpack .../013-libxxf86dga1_2%3a1.1.4-1_amd64.deb ...
-Unpacking libxxf86dga1:amd64 (2:1.1.4-1) ...
-Selecting previously unselected package libxxf86vm1:amd64.
-Preparing to unpack .../014-libxxf86vm1_1%3a1.1.4-1_amd64.deb ...
-Unpacking libxxf86vm1:amd64 (1:1.1.4-1) ...
-Selecting previously unselected package libapparmor1:amd64.
-Preparing to unpack .../015-libapparmor1_2.12-4ubuntu5.1_amd64.deb ...
-Unpacking libapparmor1:amd64 (2.12-4ubuntu5.1) ...
-Selecting previously unselected package libdbus-1-3:amd64.
-Preparing to unpack .../016-libdbus-1-3_1.12.2-1ubuntu1.1_amd64.deb ...
-Unpacking libdbus-1-3:amd64 (1.12.2-1ubuntu1.1) ...
-Selecting previously unselected package dbus.
-Preparing to unpack .../017-dbus_1.12.2-1ubuntu1.1_amd64.deb ...
-Unpacking dbus (1.12.2-1ubuntu1.1) ...
-Selecting previously unselected package libelf1:amd64.
-Preparing to unpack .../018-libelf1_0.170-0.4ubuntu0.1_amd64.deb ...
-Unpacking libelf1:amd64 (0.170-0.4ubuntu0.1) ...
-Selecting previously unselected package libglib2.0-0:amd64.
-Preparing to unpack .../019-libglib2.0-0_2.56.4-0ubuntu0.18.04.4_amd64.deb ...
-Unpacking libglib2.0-0:amd64 (2.56.4-0ubuntu0.18.04.4) ...
-Selecting previously unselected package libglib2.0-data.
-Preparing to unpack .../020-libglib2.0-data_2.56.4-0ubuntu0.18.04.4_all.deb ...
-Unpacking libglib2.0-data (2.56.4-0ubuntu0.18.04.4) ...
-Selecting previously unselected package libicu60:amd64.
-Preparing to unpack .../021-libicu60_60.2-3ubuntu3_amd64.deb ...
-Unpacking libicu60:amd64 (60.2-3ubuntu3) ...
-Selecting previously unselected package libxml2:amd64.
-Preparing to unpack .../022-libxml2_2.9.4+dfsg1-6.1ubuntu1.2_amd64.deb ...
-Unpacking libxml2:amd64 (2.9.4+dfsg1-6.1ubuntu1.2) ...
-Selecting previously unselected package shared-mime-info.
-Preparing to unpack .../023-shared-mime-info_1.9-2_amd64.deb ...
-Unpacking shared-mime-info (1.9-2) ...
-Selecting previously unselected package xdg-user-dirs.
-Preparing to unpack .../024-xdg-user-dirs_0.17-1ubuntu1_amd64.deb ...
-Unpacking xdg-user-dirs (0.17-1ubuntu1) ...
-Selecting previously unselected package libdrm-common.
-Preparing to unpack .../025-libdrm-common_2.4.97-1ubuntu1~18.04.1_all.deb ...
-Unpacking libdrm-common (2.4.97-1ubuntu1~18.04.1) ...
-Selecting previously unselected package libdrm2:amd64.
-Preparing to unpack .../026-libdrm2_2.4.97-1ubuntu1~18.04.1_amd64.deb ...
-Unpacking libdrm2:amd64 (2.4.97-1ubuntu1~18.04.1) ...
-Selecting previously unselected package libatspi2.0-0:amd64.
-Preparing to unpack .../027-libatspi2.0-0_2.28.0-1_amd64.deb ...
-Unpacking libatspi2.0-0:amd64 (2.28.0-1) ...
-Selecting previously unselected package libxtst6:amd64.
-Preparing to unpack .../028-libxtst6_2%3a1.2.3-1_amd64.deb ...
-Unpacking libxtst6:amd64 (2:1.2.3-1) ...
-Selecting previously unselected package at-spi2-core.
-Preparing to unpack .../029-at-spi2-core_2.28.0-1_amd64.deb ...
-Unpacking at-spi2-core (2.28.0-1) ...
-Selecting previously unselected package java-common.
-Preparing to unpack .../030-java-common_0.68ubuntu1~18.04.1_all.deb ...
-Unpacking java-common (0.68ubuntu1~18.04.1) ...
-Selecting previously unselected package libavahi-common-data:amd64.
-Preparing to unpack .../031-libavahi-common-data_0.7-3.1ubuntu1.2_amd64.deb ...
-Unpacking libavahi-common-data:amd64 (0.7-3.1ubuntu1.2) ...
-Selecting previously unselected package libavahi-common3:amd64.
-Preparing to unpack .../032-libavahi-common3_0.7-3.1ubuntu1.2_amd64.deb ...
-Unpacking libavahi-common3:amd64 (0.7-3.1ubuntu1.2) ...
-Selecting previously unselected package libavahi-client3:amd64.
-Preparing to unpack .../033-libavahi-client3_0.7-3.1ubuntu1.2_amd64.deb ...
-Unpacking libavahi-client3:amd64 (0.7-3.1ubuntu1.2) ...
-Selecting previously unselected package libcups2:amd64.
-Preparing to unpack .../034-libcups2_2.2.7-1ubuntu2.7_amd64.deb ...
-Unpacking libcups2:amd64 (2.2.7-1ubuntu2.7) ...
-Selecting previously unselected package liblcms2-2:amd64.
-Preparing to unpack .../035-liblcms2-2_2.9-1ubuntu0.1_amd64.deb ...
-Unpacking liblcms2-2:amd64 (2.9-1ubuntu0.1) ...
-Selecting previously unselected package libjpeg8:amd64.
-Preparing to unpack .../036-libjpeg8_8c-2ubuntu8_amd64.deb ...
-Unpacking libjpeg8:amd64 (8c-2ubuntu8) ...
-Selecting previously unselected package libnspr4:amd64.
-Preparing to unpack .../037-libnspr4_2%3a4.18-1ubuntu1_amd64.deb ...
-Unpacking libnspr4:amd64 (2:4.18-1ubuntu1) ...
-Selecting previously unselected package libnss3:amd64.
-Preparing to unpack .../038-libnss3_2%3a3.35-2ubuntu2.3_amd64.deb ...
-Unpacking libnss3:amd64 (2:3.35-2ubuntu2.3) ...
-Selecting previously unselected package libasound2-data.
-Preparing to unpack .../039-libasound2-data_1.1.3-5ubuntu0.2_all.deb ...
-Unpacking libasound2-data (1.1.3-5ubuntu0.2) ...
-Selecting previously unselected package libasound2:amd64.
-Preparing to unpack .../040-libasound2_1.1.3-5ubuntu0.2_amd64.deb ...
-Unpacking libasound2:amd64 (1.1.3-5ubuntu0.2) ...
-Selecting previously unselected package libpcsclite1:amd64.
-Preparing to unpack .../041-libpcsclite1_1.8.23-1_amd64.deb ...
-Unpacking libpcsclite1:amd64 (1.8.23-1) ...
-Selecting previously unselected package libxi6:amd64.
-Preparing to unpack .../042-libxi6_2%3a1.7.9-1_amd64.deb ...
-Unpacking libxi6:amd64 (2:1.7.9-1) ...
-Selecting previously unselected package openjdk-11-jre-headless:amd64.
-Preparing to unpack .../043-openjdk-11-jre-headless_11.0.4+11-1ubuntu2~18.04.3_amd64.deb ...
-Unpacking openjdk-11-jre-headless:amd64 (11.0.4+11-1ubuntu2~18.04.3) ...
-Selecting previously unselected package ca-certificates-java.
-Preparing to unpack .../044-ca-certificates-java_20180516ubuntu1~18.04.1_all.deb ...
-Unpacking ca-certificates-java (20180516ubuntu1~18.04.1) ...
-Selecting previously unselected package fonts-dejavu-extra.
-Preparing to unpack .../045-fonts-dejavu-extra_2.37-1_all.deb ...
-Unpacking fonts-dejavu-extra (2.37-1) ...
-Selecting previously unselected package libatk1.0-data.
-Preparing to unpack .../046-libatk1.0-data_2.28.1-1_all.deb ...
-Unpacking libatk1.0-data (2.28.1-1) ...
-Selecting previously unselected package libatk1.0-0:amd64.
-Preparing to unpack .../047-libatk1.0-0_2.28.1-1_amd64.deb ...
-Unpacking libatk1.0-0:amd64 (2.28.1-1) ...
-Selecting previously unselected package libatk-bridge2.0-0:amd64.
-Preparing to unpack .../048-libatk-bridge2.0-0_2.26.2-1_amd64.deb ...
-Unpacking libatk-bridge2.0-0:amd64 (2.26.2-1) ...
-Selecting previously unselected package libfontenc1:amd64.
-Preparing to unpack .../049-libfontenc1_1%3a1.1.3-1_amd64.deb ...
-Unpacking libfontenc1:amd64 (1:1.1.3-1) ...
-Selecting previously unselected package libglvnd0:amd64.
-Preparing to unpack .../050-libglvnd0_1.0.0-2ubuntu2.3_amd64.deb ...
-Unpacking libglvnd0:amd64 (1.0.0-2ubuntu2.3) ...
-Selecting previously unselected package libglapi-mesa:amd64.
-Preparing to unpack .../051-libglapi-mesa_19.0.8-0ubuntu0~18.04.2_amd64.deb ...
-Unpacking libglapi-mesa:amd64 (19.0.8-0ubuntu0~18.04.2) ...
-Selecting previously unselected package libx11-xcb1:amd64.
-Preparing to unpack .../052-libx11-xcb1_2%3a1.6.4-3ubuntu0.2_amd64.deb ...
-Unpacking libx11-xcb1:amd64 (2:1.6.4-3ubuntu0.2) ...
-Selecting previously unselected package libxcb-dri2-0:amd64.
-Preparing to unpack .../053-libxcb-dri2-0_1.13-2~ubuntu18.04_amd64.deb ...
-Unpacking libxcb-dri2-0:amd64 (1.13-2~ubuntu18.04) ...
-Selecting previously unselected package libxcb-dri3-0:amd64.
