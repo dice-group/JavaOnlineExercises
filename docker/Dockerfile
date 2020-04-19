@@ -4,15 +4,15 @@
 
 
 # Based on
-#  Jupyterhub 1.2
+#  Jupyterhub 1.0.0
 # which is based on
-#  ubuntu:bionic-20191029
+#  Ubuntu 18.04 LTS
 # https://jupyterhub.readthedocs.io/en/stable/quickstart-docker.html
 # https://hub.docker.com/r/jupyterhub/jupyterhub/
 # https://hub.docker.com/r/library/ubuntu/
-# https://github.com/jupyterhub/jupyterhub/blob/391320a59018918759b2b72f728f01cbb79ec210/Dockerfile
+# https://github.com/jupyterhub/jupyterhub/blob/0.9.4/Dockerfile
 
-FROM jupyterhub/jupyterhub:1.2
+FROM jupyterhub/jupyterhub:1.0.0
 LABEL maintainer="Adrian Wilke <adrian.wilke@upb.REMOVEME.de>"
 
 
@@ -28,13 +28,11 @@ RUN apt-get -y update && \
 
 # Upgrade the system and install
 # - nano editor
-# - wget
 # - zip (including unzip)
 
 RUN apt-get -y upgrade && \
  apt-get -y install \
  nano \
- wget \
  zip
 
 
@@ -80,22 +78,6 @@ RUN useradd --create-home nbgadmin && \
  useradd --create-home nbguser && \
  usermod --password \$1\$xg4dbNmA\$ygNrKGsFBsu8hXoGieRSK0 nbgadmin && \
  usermod --password \$1\$xg4dbNmA\$ygNrKGsFBsu8hXoGieRSK0 nbguser
-
-
-
-# Install anaconda
-# (seems like removed for jupyterhub/jupyterhub:1.2)
-# https://github.com/jupyterhub/jupyterhub/blob/0.9.x/Dockerfile#L38
-
-RUN wget -q https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O /tmp/miniconda.sh  && \
-    echo '81c773ff87af5cfac79ab862942ab6b3 */tmp/miniconda.sh' | md5sum -c - && \
-    bash /tmp/miniconda.sh -f -b -p /opt/conda && \
-    /opt/conda/bin/conda install --yes -c conda-forge \
-      python=3.6 sqlalchemy tornado jinja2 traitlets requests pip pycurl \
-      nodejs configurable-http-proxy && \
-    /opt/conda/bin/pip install --upgrade pip && \
-    rm /tmp/miniconda.sh
-ENV PATH=/opt/conda/bin:$PATH
 
 
 
