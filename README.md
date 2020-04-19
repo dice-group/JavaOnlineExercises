@@ -1,6 +1,6 @@
 # JOE: Java Online Exercises
 
-(formerly: nbgraderutils)
+Automatically graded Java web exercises (formerly: nbgraderutils)
 
 This repository provides scripts and information to offer web-based Java assignments.
 
