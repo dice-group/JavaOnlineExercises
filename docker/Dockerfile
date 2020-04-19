@@ -4,15 +4,15 @@
 
 
 # Based on
-#  Jupyterhub 1.0.0
+#  Jupyterhub 1.2
 # which is based on
-#  Ubuntu 18.04 LTS
+#  ubuntu:bionic-20191029
 # https://jupyterhub.readthedocs.io/en/stable/quickstart-docker.html
 # https://hub.docker.com/r/jupyterhub/jupyterhub/
 # https://hub.docker.com/r/library/ubuntu/
-# https://github.com/jupyterhub/jupyterhub/blob/0.9.4/Dockerfile
+# https://github.com/jupyterhub/jupyterhub/blob/391320a59018918759b2b72f728f01cbb79ec210/Dockerfile
 
-FROM jupyterhub/jupyterhub:1.0.0
+FROM jupyterhub/jupyterhub:1.2
 LABEL maintainer="Adrian Wilke <adrian.wilke@upb.REMOVEME.de>"
 
 
@@ -28,11 +28,13 @@ RUN apt-get -y update && \
 
 # Upgrade the system and install
 # - nano editor
+# - wget
 # - zip (including unzip)
 
 RUN apt-get -y upgrade && \
  apt-get -y install \
  nano \
+ wget \
  zip
 
 
@@ -81,6 +83,22 @@ RUN useradd --create-home nbgadmin && \
 
 
 
+# Install anaconda
+# (seems like removed for jupyterhub/jupyterhub:1.2)
+# https://github.com/jupyterhub/jupyterhub/blob/0.9.x/Dockerfile#L38
+
+RUN wget -q https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O /tmp/miniconda.sh  && \
+    echo '81c773ff87af5cfac79ab862942ab6b3 */tmp/miniconda.sh' | md5sum -c - && \
+    bash /tmp/miniconda.sh -f -b -p /opt/conda && \
+    /opt/conda/bin/conda install --yes -c conda-forge \
+      python=3.6 sqlalchemy tornado jinja2 traitlets requests pip pycurl \
+      nodejs configurable-http-proxy && \
+    /opt/conda/bin/pip install --upgrade pip && \
+    rm /tmp/miniconda.sh
+ENV PATH=/opt/conda/bin:$PATH
+
+
+
 # Install nbgrader
 # Create directory for pushing/pulling assignments
 # Disable extensions for non-admins
@@ -89,7 +107,7 @@ RUN useradd --create-home nbgadmin && \
 # https://nbgrader.readthedocs.io/en/stable/user_guide/installation.html
 
 RUN conda update -n base conda && \
- conda install -c conda-forge nbgrader=0.6.0 && \
+ conda install -c conda-forge nbgrader=0.6.1 && \
  jupyter nbextension disable --sys-prefix create_assignment/main && \
  jupyter nbextension disable --sys-prefix formgrader/main --section=tree && \
  runuser -l  nbgadmin -c '/opt/conda/bin/jupyter nbextension enable --user create_assignment/main' && \
@@ -142,7 +160,7 @@ RUN jupyter notebook --generate-config && \
 RUN mkdir -p /srv/nbgrader/exchange && \
  chmod ugo+rw /srv/nbgrader/exchange \
  && \
- echo "c = get_config()\n\
+ printf "c = get_config()\n\
 c.CourseDirectory.course_id = \"default-course\"\n\
 c.Exchange.root = '/srv/nbgrader/exchange'\n\
 c.ExecutePreprocessor.timeout = 300\n\
