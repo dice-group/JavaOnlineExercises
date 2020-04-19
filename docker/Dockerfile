@@ -87,8 +87,8 @@ RUN useradd --create-home nbgadmin && \
 # (seems like removed for jupyterhub/jupyterhub:1.2)
 # https://github.com/jupyterhub/jupyterhub/blob/0.9.x/Dockerfile#L38
 
-RUN wget -q https://repo.continuum.io/miniconda/Miniconda3-4.5.1-Linux-x86_64.sh -O /tmp/miniconda.sh  && \
-    echo '0c28787e3126238df24c5d4858bd0744 */tmp/miniconda.sh' | md5sum -c - && \
+RUN wget -q https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O /tmp/miniconda.sh  && \
+    echo '81c773ff87af5cfac79ab862942ab6b3 */tmp/miniconda.sh' | md5sum -c - && \
     bash /tmp/miniconda.sh -f -b -p /opt/conda && \
     /opt/conda/bin/conda install --yes -c conda-forge \
       python=3.6 sqlalchemy tornado jinja2 traitlets requests pip pycurl \
@@ -160,7 +160,7 @@ RUN jupyter notebook --generate-config && \
 RUN mkdir -p /srv/nbgrader/exchange && \
  chmod ugo+rw /srv/nbgrader/exchange \
  && \
- echo "c = get_config()\n\
+ printf "c = get_config()\n\
 c.CourseDirectory.course_id = \"default-course\"\n\
 c.Exchange.root = '/srv/nbgrader/exchange'\n\
 c.ExecutePreprocessor.timeout = 300\n\
