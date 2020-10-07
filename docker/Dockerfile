@@ -17,6 +17,20 @@ LABEL maintainer="Adrian Wilke <adrian.wilke@upb.REMOVEME.de>"
 
 
 
+# Based on
+#  Jupyterhub 1.2.0
+# which is based on
+#  Ubuntu 20.04 (focal)
+# https://jupyterhub.readthedocs.io/en/stable/quickstart-docker.html
+# https://hub.docker.com/r/jupyterhub/jupyterhub/
+# https://hub.docker.com/r/library/ubuntu/
+# https://github.com/jupyterhub/jupyterhub/commits/master/Dockerfile
+#
+#FROM jupyterhub/jupyterhub:1.2.0
+#LABEL maintainer="Adrian Wilke <adrian.wilke@upb.REMOVEME.de>"
+
+
+
 # Update the system and install
 # - APT utils
 
