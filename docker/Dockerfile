@@ -1,3 +1,26 @@
+# State: endless loop at conda script
+#
+#Do you accept the license terms? [yes|no]
+#[no] >>> Please answer 'yes' or 'no':'
+#>>> Please answer 'yes' or 'no':'
+#>>> Please answer 'yes' or 'no':'
+#
+# https://stackoverflow.com/questions/49865531/bash-script-for-anaconda-installer-and-license-agreement
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Dockerfile for Jupyter notebook + nbgrader + Java kernel
 # https://github.com/dice-group/nbgraderutils
 
@@ -12,8 +35,8 @@
 # https://hub.docker.com/r/library/ubuntu/
 # https://github.com/jupyterhub/jupyterhub/blob/0.9.4/Dockerfile
 
-FROM jupyterhub/jupyterhub:1.0.0
-LABEL maintainer="Adrian Wilke <adrian.wilke@upb.REMOVEME.de>"
+#FROM jupyterhub/jupyterhub:1.0.0
+#LABEL maintainer="Adrian Wilke <adrian.wilke@upb.REMOVEME.de>"
 
 
 
@@ -26,8 +49,8 @@ LABEL maintainer="Adrian Wilke <adrian.wilke@upb.REMOVEME.de>"
 # https://hub.docker.com/r/library/ubuntu/
 # https://github.com/jupyterhub/jupyterhub/commits/master/Dockerfile
 #
-#FROM jupyterhub/jupyterhub:1.2.0
-#LABEL maintainer="Adrian Wilke <adrian.wilke@upb.REMOVEME.de>"
+FROM jupyterhub/jupyterhub:1.2
+LABEL maintainer="Adrian Wilke <adrian.wilke@upb.REMOVEME.de>"
 
 
 
@@ -35,19 +58,20 @@ LABEL maintainer="Adrian Wilke <adrian.wilke@upb.REMOVEME.de>"
 # - APT utils
 
 RUN apt-get -y update && \
- apt-get -y install \
- apt-utils
+ apt-get -y install apt-utils
 
 
 
 # Upgrade the system and install
 # - nano editor
 # - zip (including unzip)
+# - wget
 
 RUN apt-get -y upgrade && \
  apt-get -y install \
  nano \
- zip
+ zip \
+ wget
 
 
 
@@ -92,6 +116,14 @@ RUN useradd --create-home nbgadmin && \
  useradd --create-home nbguser && \
  usermod --password \$1\$xg4dbNmA\$ygNrKGsFBsu8hXoGieRSK0 nbgadmin && \
  usermod --password \$1\$xg4dbNmA\$ygNrKGsFBsu8hXoGieRSK0 nbguser
+
+
+
+# Install Anaconda
+# https://wiki.ubuntuusers.de/Anaconda/
+RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh && \
+ bash Anaconda3-2020.07-Linux-x86_64.sh
+
 
 
 
