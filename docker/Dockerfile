@@ -1,16 +1,6 @@
-# State: endless loop at conda script
-#
-#Do you accept the license terms? [yes|no]
-#[no] >>> Please answer 'yes' or 'no':'
-#>>> Please answer 'yes' or 'no':'
-#>>> Please answer 'yes' or 'no':'
-#
-# https://stackoverflow.com/questions/49865531/bash-script-for-anaconda-installer-and-license-agreement
-
-
-
-
-
+# State:
+# anaconda installation works
+# breaks at Install nbgrader
 
 
 
@@ -41,7 +31,7 @@
 
 
 # Based on
-#  Jupyterhub 1.2.0
+#  Jupyterhub 1.2
 # which is based on
 #  Ubuntu 20.04 (focal)
 # https://jupyterhub.readthedocs.io/en/stable/quickstart-docker.html
@@ -122,8 +112,8 @@ RUN useradd --create-home nbgadmin && \
 # Install Anaconda
 # https://wiki.ubuntuusers.de/Anaconda/
 RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh && \
- bash Anaconda3-2020.07-Linux-x86_64.sh
-
+ chmod +x Anaconda3-2020.07-Linux-x86_64.sh && \
+ ./Anaconda3-2020.07-Linux-x86_64.sh -b
 
 
 
