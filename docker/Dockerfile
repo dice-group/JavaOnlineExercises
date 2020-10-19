@@ -1,13 +1,4 @@
-# State:
-# anaconda installation works
-# breaks at Install nbgrader
-
-
-
-
-
-
-
+# State: Two error return codes in this version. See TODO marker.
 
 
 
@@ -124,12 +115,14 @@ RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_6
 # https://anaconda.org/conda-forge/nbgrader/labels
 # https://nbgrader.readthedocs.io/en/stable/user_guide/installation.html
 
-RUN conda update -n base conda && \
- conda install -c conda-forge nbgrader=0.6.1 && \
- jupyter nbextension disable --sys-prefix create_assignment/main && \
- jupyter nbextension disable --sys-prefix formgrader/main --section=tree && \
- runuser -l  nbgadmin -c '/opt/conda/bin/jupyter nbextension enable --user create_assignment/main' && \
- runuser -l  nbgadmin -c '/opt/conda/bin/jupyter nbextension enable --user formgrader/main --section=tree'
+RUN /root/anaconda3/bin/conda update -y -n base conda && \
+ /root/anaconda3/bin/conda install -y -c conda-forge nbgrader=0.6.1
+# TODO: Commands return error codes
+# && \
+# jupyter nbextension disable --sys-prefix create_assignment/main && \
+# jupyter nbextension disable --sys-prefix formgrader/main --section=tree && \
+# runuser -l  nbgadmin -c '/opt/conda/bin/jupyter nbextension enable --user create_assignment/main' && \
+# runuser -l  nbgadmin -c '/opt/conda/bin/jupyter nbextension enable --user formgrader/main --section=tree'
 
 
 
@@ -186,19 +179,21 @@ c.ClearSolutions.code_stub = {\n\
 'python': '# YOUR CODE HERE',\n\
 'java': '// YOUR CODE HERE',\n\
 }" \
-> /opt/conda/etc/jupyter/nbgrader_config.py  \
+> /root/anaconda3/etc/jupyter/nbgrader_config.py  \
  && \
  cd /mnt && \
- ln -s /opt/conda/etc/jupyter/nbgrader_config.py
+ ln -s /root/anaconda3/etc/jupyter/nbgrader_config.py
 
 
+
+# TODO: Command produces error
 
 # Create nbgrader accounts for nbgadmin and nbguser
 # (Avoids autograding errors, if these accounts submitted solution)
 
 RUN cd /home/nbgadmin/ && \
- nbgrader db student add nbgadmin && \
- nbgrader db student add nbguser
+ /root/anaconda3/bin/nbgrader db student add nbgadmin && \
+ /root/anaconda3/bin/nbgrader db student add nbguser
 
 
 
